@@ -11,8 +11,6 @@ public interface Constant {
     String People = API_SERVER + "/People";
     String Crowd = API_SERVER + "/Crowd";
     String Info = API_SERVER + "/Info";
-    String APP_ID = "8e322a50992e4907a1230b14f3389164";
-    String APP_KEY = "867ded663b1443cdb8195ca0af14cbb4";
     /**
      * 用户不存在
      */

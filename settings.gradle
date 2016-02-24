@@ -1,3 +1,4 @@
-include ':app', ':sample'
+include ':app'
+include 'sample_check'
 include ':app_dev'
 include ':lib'

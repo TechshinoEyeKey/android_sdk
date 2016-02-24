@@ -49,9 +49,6 @@ public class CheckAPI implements Constant {
     private static final String EYEKEY_APP_ID = "eyekey_appid";
     private static final String EYEKEY_APP_KEY = "eyekey_appkey";
 
-//    private static String sAppId = "8e322a50992e4907a1230b14f3389164";
-//    private static String sAppKey = "867ded663b1443cdb8195ca0af14cbb4";
-
     private static String sAppId = "";
     private static String sAppKey = "";
 
