@@ -1,0 +1,11 @@
+<resources>
+    <declare-styleable name="IconView">
+        <attr name="iconString" format="string"/>
+        <attr name="iconDimension" format="dimension"/>
+        <attr name="iconColor" format="color"/>
+        <attr name="iconDrawable" format="color|reference"/>
+        <attr name="iconTextSize" format="dimension"/>
+        <attr name="iconTextColor" format="color"/>
+        <attr name="iconPaddingBottom" format="dimension"/>
+    </declare-styleable>
+</resources>

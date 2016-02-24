@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">EyeKeySDK</string>
+    <string name="app_title">VIP人脸识别</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="toast_network_error">网络出错，请检查网络连接</string>
+    <string name="text_confirm">确认</string>
+    <string name="text_cancel">取消</string>
+    <string name="text_is_change_front_preview">是否切换为前置摄像头</string>
+    <string name="text_is_change_back_preview">是否切换为后置摄像头</string>
+    <string name="text_delete_confirm">确认删除！</string>
+
+    <string name="text_name_not_empty">用户名不能为空</string>
+    <string name="text_enroll">注册中请稍后...</string>
+    <string name="text_deleting">删除中...</string>
+    <string name="text_test">检测中...</string>
+    <string name="text_user_exist">用户已存在，不要重复注册</string>
+    <string name="text_user_unregister">用户未注册</string>
+    <string name="toast_enroll_failed">注册失败</string>
+    <string name="toast_verify_failed">认证失败</string>
+    <string name="toast_no_faceId">未检测到人脸</string>
+    <string name="toast_enroll_success">注册成功</string>
+    <string name="toast_delete_success">删除成功</string>
+    <string name="toast_delete_failed_no_user">删除失败，用户不存在</string>
+    <string name="toast_delete_failed">删除失败</string>
+
+</resources>
