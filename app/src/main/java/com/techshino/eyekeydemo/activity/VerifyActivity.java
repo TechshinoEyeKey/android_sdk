@@ -20,20 +20,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.techshino.eyekeydemo.R;
-import com.techshino.eyekeysdk.api.CheckAPI;
-import com.techshino.eyekeysdk.conn.Constant;
-import com.techshino.eyekeysdk.entity.Face;
-import com.techshino.eyekeysdk.entity.FaceAttrs;
-import com.techshino.eyekeysdk.entity.MatchVerify;
 import com.techshino.eyekeydemo.utils.CustomUtil;
 import com.techshino.eyekeydemo.utils.Logs;
 import com.techshino.eyekeydemo.utils.MeasureUtil;
 import com.techshino.eyekeydemo.utils.StringUtils;
 import com.techshino.eyekeydemo.utils.ToastUtils;
 import com.techshino.eyekeydemo.view.CameraSurfaceView;
+import com.techshino.eyekeysdk.api.CheckAPI;
+import com.techshino.eyekeysdk.conn.Constant;
+import com.techshino.eyekeysdk.entity.Face;
+import com.techshino.eyekeysdk.entity.FaceAttrs;
+import com.techshino.eyekeysdk.entity.MatchVerify;
 
 import java.util.List;
-import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -251,10 +250,7 @@ public class VerifyActivity extends BaseAppcompatActivity implements CameraSurfa
             return;
         }
 
-        final String dataImage = CustomUtil.bitmapToBase64(bitmaps[1]);
-        Map<String, String> params = CustomUtil.getMapParams();
-        params.put("img", dataImage);
-
+        String dataImage = CustomUtil.bitmapToBase64(bitmaps[1]);
         mProgressDialog.setMessage("验证中...");
         mProgressDialog.show();
         Call<FaceAttrs> call = CheckAPI.checkingImageData(dataImage, null, null);

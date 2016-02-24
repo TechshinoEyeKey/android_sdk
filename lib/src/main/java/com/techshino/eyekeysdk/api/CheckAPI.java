@@ -1,5 +1,10 @@
 package com.techshino.eyekeysdk.api;
 
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.util.Log;
+
 import com.techshino.eyekeysdk.conn.Constant;
 import com.techshino.eyekeysdk.entity.AppInfo;
 import com.techshino.eyekeysdk.entity.CrowdAddAndRemove;
@@ -41,7 +46,30 @@ public class CheckAPI implements Constant {
 
     private static final String TAG = "CheckAPI";
 
+    private static final String EYEKEY_APP_ID = "eyekey_appid";
+    private static final String EYEKEY_APP_KEY = "eyekey_appkey";
+
+//    private static String sAppId = "8e322a50992e4907a1230b14f3389164";
+//    private static String sAppKey = "867ded663b1443cdb8195ca0af14cbb4";
+
+    private static String sAppId = "";
+    private static String sAppKey = "";
+
     private static ArrayList<Call> sCalls = new ArrayList<>();
+
+    public static void init(Context context) {
+        ApplicationInfo appInfo = null;
+        try {
+            appInfo = context.getPackageManager()
+                    .getApplicationInfo(context.getPackageName(),
+                            PackageManager.GET_META_DATA);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        sAppId=appInfo.metaData.getString(EYEKEY_APP_ID);
+        sAppKey=appInfo.metaData.getString(EYEKEY_APP_KEY);
+        Log.i(TAG,"appid:" + sAppId + " appkey:" + sAppKey);
+    }
 
     private static final Retrofit sRetrofit = new Retrofit.Builder()
             .baseUrl(API_SERVER)
@@ -59,7 +87,7 @@ public class CheckAPI implements Constant {
      * @param tip       (可选)指定一个不包含^@,&=*'"等非法字符且不超过255字节的字符串作为tip
      */
     public static Call<FaceAttrs> checkingImageData(String dataImage, String mode, String tip) {
-        Call<FaceAttrs> call = sEyekeyManagerService.checkingImageData(APP_ID, APP_KEY, dataImage, mode, tip);
+        Call<FaceAttrs> call = sEyekeyManagerService.checkingImageData(sAppId, sAppKey, dataImage, mode, tip);
         sCalls.add(call);
         return call;
     }
@@ -74,7 +102,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<FaceAttrs> checkingImageUrl(String urlImage, String mode, String tip) {
-        Call<FaceAttrs> call = sEyekeyManagerService.checkingImageUrl(APP_ID, APP_KEY, urlImage, mode, tip);
+        Call<FaceAttrs> call = sEyekeyManagerService.checkingImageUrl(sAppId, sAppKey, urlImage, mode, tip);
         sCalls.add(call);
         return call;
     }
@@ -87,7 +115,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<FaceMark> checkMark(String face_id, String type) {
-        Call<FaceMark> call = sEyekeyManagerService.checkMark(APP_ID, APP_KEY, face_id, type);
+        Call<FaceMark> call = sEyekeyManagerService.checkMark(sAppId, sAppKey, face_id, type);
         sCalls.add(call);
         return call;
     }
@@ -100,7 +128,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<MatchCompare> matchCompare(String faceId1, String faceId2) {
-        Call<MatchCompare> call = sEyekeyManagerService.matchCompare(APP_ID, APP_KEY, faceId1, faceId2);
+        Call<MatchCompare> call = sEyekeyManagerService.matchCompare(sAppId, sAppKey, faceId1, faceId2);
         sCalls.add(call);
         return call;
     }
@@ -115,7 +143,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<MatchConfirm> matchConfirm(String dynamicode, String peopleName) {
-        Call<MatchConfirm> call = sEyekeyManagerService.matchConfirm(APP_ID, APP_KEY, dynamicode, peopleName);
+        Call<MatchConfirm> call = sEyekeyManagerService.matchConfirm(sAppId, sAppKey, dynamicode, peopleName);
         sCalls.add(call);
         return call;
     }
@@ -128,7 +156,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<MatchVerify> matchVerify(String faceId, String peopleName) {
-        Call call = sEyekeyManagerService.matchVerify(APP_ID, APP_KEY, faceId, peopleName);
+        Call call = sEyekeyManagerService.matchVerify(sAppId, sAppKey, faceId, peopleName);
         sCalls.add(call);
         return call;
     }
@@ -142,7 +170,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<MatchSearch> matchSearch(String faceId, String faceGatherName, int count) {
-        Call<MatchSearch> call = sEyekeyManagerService.matchSearch(APP_ID, APP_KEY, faceId, faceGatherName, count);
+        Call<MatchSearch> call = sEyekeyManagerService.matchSearch(sAppId, sAppKey, faceId, faceGatherName, count);
         sCalls.add(call);
         return call;
     }
@@ -156,7 +184,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<MatchIdentify> matchIdentify(String crowdName, String faceId) {
-        Call<MatchIdentify> call = sEyekeyManagerService.matchIdentify(APP_ID, APP_KEY, crowdName, faceId);
+        Call<MatchIdentify> call = sEyekeyManagerService.matchIdentify(sAppId, sAppKey, crowdName, faceId);
         sCalls.add(call);
         return call;
     }
@@ -171,7 +199,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<FaceGatherCreate> faceGatherCreate(String faceGatherName, String faceId, String tip) {
-        Call<FaceGatherCreate> call = sEyekeyManagerService.faceGatherCreate(APP_ID, APP_KEY, faceGatherName, faceId, tip);
+        Call<FaceGatherCreate> call = sEyekeyManagerService.faceGatherCreate(sAppId, sAppKey, faceGatherName, faceId, tip);
         sCalls.add(call);
         return call;
     }
@@ -183,7 +211,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<FaceGatherDelete> facegatherDelete(String faceGatherName) {
-        Call<FaceGatherDelete> call = sEyekeyManagerService.facegatherDelete(APP_ID, APP_KEY, faceGatherName);
+        Call<FaceGatherDelete> call = sEyekeyManagerService.facegatherDelete(sAppId, sAppKey, faceGatherName);
         sCalls.add(call);
         return call;
     }
@@ -196,7 +224,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<FaceGatherAddFace> faceGatherAddFace(String faceGatherName, String faceId) {
-        Call<FaceGatherAddFace> call = sEyekeyManagerService.faceGatherAddFace(APP_ID, APP_KEY, faceGatherName, faceId);
+        Call<FaceGatherAddFace> call = sEyekeyManagerService.faceGatherAddFace(sAppId, sAppKey, faceGatherName, faceId);
         sCalls.add(call);
         return call;
     }
@@ -210,7 +238,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<FaceGatherRemoveFace> faceGatherRemoveface(String faceGatherName, String faceId) {
-        Call<FaceGatherRemoveFace> call = sEyekeyManagerService.faceGatherRemoveFace(APP_ID, APP_KEY, faceGatherName, faceId);
+        Call<FaceGatherRemoveFace> call = sEyekeyManagerService.faceGatherRemoveFace(sAppId, sAppKey, faceGatherName, faceId);
         sCalls.add(call);
         return call;
     }
@@ -224,7 +252,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<FaceGatherSet> faceGatherSet(String faceGatherName, String name, String tip) {
-        Call<FaceGatherSet> call = sEyekeyManagerService.faceGatherSet(APP_ID, APP_KEY, faceGatherName, name, tip);
+        Call<FaceGatherSet> call = sEyekeyManagerService.faceGatherSet(sAppId, sAppKey, faceGatherName, name, tip);
         sCalls.add(call);
         return call;
     }
@@ -236,7 +264,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<FaceGatherGet> faceGatherGet(String faceGatherName) {
-        Call<FaceGatherGet> call = sEyekeyManagerService.faceGatherGet(APP_ID, APP_KEY, faceGatherName);
+        Call<FaceGatherGet> call = sEyekeyManagerService.faceGatherGet(sAppId, sAppKey, faceGatherName);
         sCalls.add(call);
         return call;
     }
@@ -253,7 +281,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<PeopleCreate> peopleCreate(String faceId, String peopleName, String tip, String crowdName) {
-        Call<PeopleCreate> call = sEyekeyManagerService.peopleCreate(APP_ID, APP_KEY, faceId, peopleName, tip, crowdName);
+        Call<PeopleCreate> call = sEyekeyManagerService.peopleCreate(sAppId, sAppKey, faceId, peopleName, tip, crowdName);
         sCalls.add(call);
         return call;
     }
@@ -265,7 +293,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<PeopleDelete> peopleDelete(String peopleName) {
-        Call<PeopleDelete> call = sEyekeyManagerService.peopleDelete(APP_ID, APP_KEY, peopleName);
+        Call<PeopleDelete> call = sEyekeyManagerService.peopleDelete(sAppId, sAppKey, peopleName);
         sCalls.add(call);
         return call;
     }
@@ -278,7 +306,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<PeopleAdd> peopleAdd(String faceId, String peopleName) {
-        Call<PeopleAdd> call = sEyekeyManagerService.peopleAdd(APP_ID, APP_KEY, faceId, peopleName);
+        Call<PeopleAdd> call = sEyekeyManagerService.peopleAdd(sAppId, sAppKey, faceId, peopleName);
         sCalls.add(call);
         return call;
     }
@@ -292,7 +320,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<PeopleRemove> peopleRemove(String peopleName, String faceId) {
-        Call<PeopleRemove> call = sEyekeyManagerService.peopleRemove(APP_ID, APP_KEY, peopleName, faceId);
+        Call<PeopleRemove> call = sEyekeyManagerService.peopleRemove(sAppId, sAppKey, peopleName, faceId);
         sCalls.add(call);
         return call;
     }
@@ -306,7 +334,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<PeopleSet> peopleSet(String peopleName, String name, String tip) {
-        Call<PeopleSet> call = sEyekeyManagerService.peopleSet(APP_ID, APP_KEY, peopleName, name, tip);
+        Call<PeopleSet> call = sEyekeyManagerService.peopleSet(sAppId, sAppKey, peopleName, name, tip);
         sCalls.add(call);
         return call;
     }
@@ -318,7 +346,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<PeopleGet> peopleGet(String peopleName) {
-        Call<PeopleGet> call = sEyekeyManagerService.peopleGet(APP_ID, APP_KEY, peopleName);
+        Call<PeopleGet> call = sEyekeyManagerService.peopleGet(sAppId, sAppKey, peopleName);
         sCalls.add(call);
         return call;
     }
@@ -334,7 +362,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<CrowdCreate> crowdCreate(String crowdName, String peopleName, String tip) {
-        Call<CrowdCreate> call = sEyekeyManagerService.crowdCreate(APP_ID, APP_KEY, crowdName, peopleName, tip);
+        Call<CrowdCreate> call = sEyekeyManagerService.crowdCreate(sAppId, sAppKey, crowdName, peopleName, tip);
         sCalls.add(call);
         return call;
     }
@@ -346,7 +374,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<CrowdDelete> crowdDelete(String crowdName) {
-        Call<CrowdDelete> call = sEyekeyManagerService.crowdDelete(APP_ID, APP_KEY, crowdName);
+        Call<CrowdDelete> call = sEyekeyManagerService.crowdDelete(sAppId, sAppKey, crowdName);
         sCalls.add(call);
         return call;
     }
@@ -360,7 +388,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<CrowdAddAndRemove> crowdRemove(String crowdName, String peopleName) {
-        Call<CrowdAddAndRemove> call = sEyekeyManagerService.crowdRemove(APP_ID, APP_KEY, crowdName, peopleName);
+        Call<CrowdAddAndRemove> call = sEyekeyManagerService.crowdRemove(sAppId, sAppKey, crowdName, peopleName);
         sCalls.add(call);
         return call;
     }
@@ -373,7 +401,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<CrowdAddAndRemove> crowdAdd(String crowdName, String peopleName) {
-        Call<CrowdAddAndRemove> call = sEyekeyManagerService.crowdAdd(APP_ID, APP_KEY, crowdName, peopleName);
+        Call<CrowdAddAndRemove> call = sEyekeyManagerService.crowdAdd(sAppId, sAppKey, crowdName, peopleName);
         sCalls.add(call);
         return call;
     }
@@ -386,7 +414,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<CrowdGet> crowdGet(String crowdName) {
-        Call<CrowdGet> call = sEyekeyManagerService.crowdGet(APP_ID, APP_KEY, crowdName);
+        Call<CrowdGet> call = sEyekeyManagerService.crowdGet(sAppId, sAppKey, crowdName);
         sCalls.add(call);
         return call;
     }
@@ -397,7 +425,7 @@ public class CheckAPI implements Constant {
      * @return
      */
     public static Call<AppInfo> getAppInfo() {
-        Call<AppInfo> call = sEyekeyManagerService.getAppinfo(APP_ID,APP_KEY);
+        Call<AppInfo> call = sEyekeyManagerService.getAppinfo(sAppId,sAppKey);
         sCalls.add(call);
         return call;
     }

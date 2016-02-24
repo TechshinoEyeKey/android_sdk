@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Sample</string>
+    <string name="app_name">EyeKey示例</string>
+
+    <string-array name="eyekeyArray">
+        <item>/checking</item>
+        <item>/match</item>
+    </string-array>
 </resources>

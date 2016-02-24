@@ -12,14 +12,10 @@ import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
 
-import com.techshino.eyekeysdk.conn.Constant;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by wangzhi on 2015/12/4.
@@ -40,13 +36,6 @@ public class CustomUtil {
             sInstance = new CustomUtil(context);
         }
         return sInstance;
-    }
-
-    public static Map getMapParams() {
-        Map map = new HashMap<String, String>();
-        map.put("app_id", Constant.APP_ID);
-        map.put("app_key", Constant.APP_KEY);
-        return map;
     }
 
     public static String getString(Context context, int resId) {

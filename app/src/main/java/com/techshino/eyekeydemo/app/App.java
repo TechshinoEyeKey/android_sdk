@@ -3,6 +3,7 @@ package com.techshino.eyekeydemo.app;
 import android.app.Application;
 
 import com.techshino.eyekeydemo.utils.SharedPreferenceUtil;
+import com.techshino.eyekeysdk.api.CheckAPI;
 
 /**
  * 程序入口
@@ -17,5 +18,6 @@ public class App extends Application{
 		super.onCreate();
 		
 		SharedPreferenceUtil.getInstance().init(getApplicationContext());
+		CheckAPI.init(getApplicationContext());
 	}
 }

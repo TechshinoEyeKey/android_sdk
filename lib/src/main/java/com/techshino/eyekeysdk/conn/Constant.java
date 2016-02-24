@@ -13,9 +13,6 @@ public interface Constant {
     String Info = API_SERVER + "/Info";
     String APP_ID = "8e322a50992e4907a1230b14f3389164";
     String APP_KEY = "867ded663b1443cdb8195ca0af14cbb4";
-    String APP_ID_KEY = "app_id=" + APP_ID + "&app_key=" + APP_KEY;
-
-
     /**
      * 用户不存在
      */

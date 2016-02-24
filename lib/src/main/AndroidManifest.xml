@@ -1,4 +1,4 @@
-<manifest package="com.techshino.eyeskeysdk"
+<manifest package="com.techshino.eyekeysdk"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
