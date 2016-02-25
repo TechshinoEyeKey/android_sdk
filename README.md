@@ -2,6 +2,8 @@
 
 android sdk for [eyekey.com](http://www.eyekey.com)
 
+Github地址：[https://github.com/TechshinoEyeKey/android_sdk](https://github.com/TechshinoEyeKey/android_sdk)
+
 ## 说明
 * 该android SDK是eyekey云平台的接口封装，适用于Android端的快速开发和集成；由于平台接口都为http实现所以开发者也可自行根据项目框架调用，降低侵入性；
 * 为了方便开发者使用以及跟随Google的潮流，本SDK使用了**OkHttp**和**retrofit2**等开源框架（ps：详细可下载源码观看）；
