@@ -600,26 +600,6 @@ public class CheckAPI implements Constant {
     }
 }
 ```
-
-# 说明
-**anroid studio**
-该demo示例使用AS开发，如需导入直接将demo拷贝到project目录下，在project.setting中include即可
-
-**eclipse**
->* 如要导入eclipse中，需将libs文件夹下的jar拷贝到eclipse中
->* 根据自己项目的版本导入以下android支持包
-    **com.android.support:appcompat-v7:<版本号>
-    com.android.support:design:<版本号>**
->* demo中使用了butterknife开源框架，所以eclipse要开启注解
-![1.png-61.5kB][1]
-
-![2.png-57.4kB][2]
-
-![3.png-48kB][3]
-
-[1]: http://static.zybuluo.com/xiaozhiwz/edf2xbbs5m67tfw6my61j2s5/1.png
-  [2]: http://static.zybuluo.com/xiaozhiwz/ww3fet0re2ts4w4doioxdwov/2.png
-  [3]: http://static.zybuluo.com/xiaozhiwz/j1rhh5kr7sjcz9wumd8lufp7/3.png
   
   版权
 =======
