@@ -1,8 +1,3 @@
 <resources>
-    <string name="app_name">EyeKey示例</string>
-
-    <string-array name="eyekeyArray">
-        <item>/checking</item>
-        <item>/match</item>
-    </string-array>
+    <string name="app_name">EyeKey人脸检测示例</string>
 </resources>

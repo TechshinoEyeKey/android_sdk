@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.techshino.eyekeysample.MainActivity">
+    tools:context="com.techshino.sample_check.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,30 +20,32 @@
 
             <Button
                 android:id="@+id/choiceImgBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="选择图片"/>
 
             <Button
                 android:id="@+id/checkingImgBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="检测图片"/>
         </LinearLayout>
 
         <TextView
             android:id="@+id/pathText"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"/>
 
         <TextView
             android:id="@+id/resultText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:background="#eeeeee"
-            android:layout_width="wrap_content"
-            android:padding="6dp"
-            android:layout_height="wrap_content"/>
+            android:padding="6dp"/>
 
     </LinearLayout>
 </ScrollView>

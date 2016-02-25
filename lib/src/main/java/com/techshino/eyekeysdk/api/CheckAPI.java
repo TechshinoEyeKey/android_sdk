@@ -42,6 +42,10 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
+/**
+ * eyekey API
+ * @author wangzhi
+ */
 public class CheckAPI implements Constant {
 
     private static final String TAG = "CheckAPI";
@@ -60,11 +64,11 @@ public class CheckAPI implements Constant {
             appInfo = context.getPackageManager()
                     .getApplicationInfo(context.getPackageName(),
                             PackageManager.GET_META_DATA);
+            sAppId=appInfo.metaData.getString(EYEKEY_APP_ID);
+            sAppKey=appInfo.metaData.getString(EYEKEY_APP_KEY);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        sAppId=appInfo.metaData.getString(EYEKEY_APP_ID);
-        sAppKey=appInfo.metaData.getString(EYEKEY_APP_KEY);
         Log.i(TAG,"appid:" + sAppId + " appkey:" + sAppKey);
     }
 

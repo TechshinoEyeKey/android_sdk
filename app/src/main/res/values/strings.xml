@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">EyeKeyDemo</string>
-    <string name="app_title">VIP人脸识别</string>
+    <string name="app_title">EyeKey人脸识别Demo</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="toast_network_error">网络出错，请检查网络连接</string>

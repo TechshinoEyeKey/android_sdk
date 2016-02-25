@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.techshino.sample_check"
+<manifest package="com.techshino.sample_compare"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -19,6 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+
         <meta-data android:name="eyekey_appkey" android:value="867ded663b1443cdb8195ca0af14cbb4"/>
         <meta-data android:name="eyekey_appid" android:value="8e322a50992e4907a1230b14f3389164"/>
     </application>
