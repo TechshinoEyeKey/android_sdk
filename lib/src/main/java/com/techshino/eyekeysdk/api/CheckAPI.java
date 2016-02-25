@@ -3,6 +3,7 @@ package com.techshino.eyekeysdk.api;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.techshino.eyekeysdk.conn.Constant;
@@ -64,8 +65,11 @@ public class CheckAPI implements Constant {
             appInfo = context.getPackageManager()
                     .getApplicationInfo(context.getPackageName(),
                             PackageManager.GET_META_DATA);
-            sAppId=appInfo.metaData.getString(EYEKEY_APP_ID);
-            sAppKey=appInfo.metaData.getString(EYEKEY_APP_KEY);
+            Bundle bundle = appInfo.metaData;
+            if (bundle != null) {
+                sAppId=bundle.getString(EYEKEY_APP_ID);
+                sAppKey=bundle.getString(EYEKEY_APP_KEY);
+            }
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }

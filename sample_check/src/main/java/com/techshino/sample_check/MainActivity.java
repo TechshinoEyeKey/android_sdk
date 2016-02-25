@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<FaceAttrs> call, Response<FaceAttrs> response) {
                 Log.i(TAG,"response:" + response.body());
-                mResultText.setText(response.body() == null ? null : response.body().toString());
+                mResultText.setText(response.body() == null ? "检测失败..." : response.body().toString());
             }
 
             @Override
