@@ -6,7 +6,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.techshino.eyeskeysdk"
+        applicationId "com.techshino.eyeskeydemo"
         minSdkVersion 11
         targetSdkVersion 22
         versionCode 2

@@ -22,12 +22,22 @@ eyekey接口封装在了lib模块中，如需引入自己的项目中将lib拷�
 
 具体接口的使用可以参照[**com.techshino.eyekeysdk.api.CheckAPI**](https://github.com/TechshinoEyeKey/android_sdk/blob/master/lib/Eyekey%20%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E4%BA%91%E5%B9%B3%E5%8F%B0%20Android%20SDK%20%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)类中的详细说明或者参考官网详细说明[eyekey API](http://www.eyekey.com/devcenter/api/APIface.html)
 
-## sample_check moudle
-该模块是对人脸检测接口的示例程序，开发者可参照示例完成其他接口；
+## sample_check 检测人脸示例
+该模块是对人脸检测接口的示例程序，开发者可以将项目自行导入AS(android studio)并查看运行效果
 
-## sample_compare
-该模块是对人脸比对接口的示例程序，开发者可参照示例完成其他接口；
+## sample_compare 比对人脸示例
+该模块是对人脸比对接口的示例程序，开发者可以将项目自行导入AS(android studio)并查看运行效果
 
 ## app
 该模块是一个基于eyekey的注册认证的应用，开发者可以参照该应用来进行相应的拍照人脸识别等开发；
 ![](https://raw.githubusercontent.com/TechshinoEyeKey/android_sdk/master/screenshot/app_icon1.png)
+
+## 注：
+Android SDK下载地址：[http://www.eyekey.com/devcenter/sdk/sdkdownload.html](http://www.eyekey.com/devcenter/sdk/sdkdownload.html)
+
+如果有问题可点击链接加入群【[EyeKey人脸识别官方群](http://qm.qq.com/cgi-bin/qm/qr?k=SoeLdMhugzD5jzkl230ABqel4X3C9YFY)】
+
+版权
+=======
+
+    Copyright 2016 eyekey, Inc.
