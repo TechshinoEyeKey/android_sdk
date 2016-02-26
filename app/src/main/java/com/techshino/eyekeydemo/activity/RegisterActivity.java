@@ -150,6 +150,8 @@ public class RegisterActivity extends BaseAppcompatActivity implements CameraSur
             }
         });
 
+        mTakeBtn.setAdjustViewBounds(true);
+
         FrameLayout.LayoutParams bgLp = (FrameLayout.LayoutParams) mBgFrame.getLayoutParams();
         bgLp.height = mSurfaceViewHeight / 5 * 3;
         bgLp.width = screenWidth / 5 * 3;
@@ -180,14 +182,14 @@ public class RegisterActivity extends BaseAppcompatActivity implements CameraSur
             public void run() {
                 startTakeAnim();
             }
-        }, 500);
+        }, 600);
     }
 
     private void startTakeAnim() {
         ObjectAnimator takeAnim1 = ObjectAnimator.ofFloat(mTakeBtn, "scaleY", 0f, 1f);
         ObjectAnimator takeAnim2 = ObjectAnimator.ofFloat(mTakeBtn, "scaleX", 0f, 1f);
         AnimatorSet animSet = new AnimatorSet();
-        animSet.setDuration(300);
+        animSet.setDuration(getResources().getInteger(android.R.integer.config_shortAnimTime));
         animSet.setInterpolator(new OvershootInterpolator());
         //两个动画同时执行
         animSet.playTogether(takeAnim1, takeAnim2);

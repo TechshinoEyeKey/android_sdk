@@ -27,7 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * eyekey人脸检测示例(checking)
+ * eyekey人脸比对示例(matchCompare)
  *
  * @author wangzhi
  */

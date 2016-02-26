@@ -69,6 +69,8 @@
             android:id="@+id/takeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxWidth="@dimen/dp_104"
+            android:maxHeight="@dimen/dp_104"
             android:layout_centerInParent="true"
             android:layout_margin="@dimen/dp_12"
             android:src="@drawable/take_icon1"

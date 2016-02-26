@@ -171,7 +171,7 @@ public class VerifyActivity extends BaseAppcompatActivity implements CameraSurfa
             public void run() {
                 startTakeAnim();
             }
-        }, 500);
+        }, 600);
 
     }
 
@@ -179,7 +179,7 @@ public class VerifyActivity extends BaseAppcompatActivity implements CameraSurfa
         ObjectAnimator takeAnim1 = ObjectAnimator.ofFloat(mTakeBtn, "scaleY", 0f, 1f);
         ObjectAnimator takeAnim2 = ObjectAnimator.ofFloat(mTakeBtn, "scaleX", 0f, 1f);
         AnimatorSet animSet = new AnimatorSet();
-        animSet.setDuration(300);
+        animSet.setDuration(getResources().getInteger(android.R.integer.config_shortAnimTime));
         animSet.setInterpolator(new OvershootInterpolator());
         //两个动画同时执行
         animSet.playTogether(takeAnim1, takeAnim2);
@@ -227,7 +227,7 @@ public class VerifyActivity extends BaseAppcompatActivity implements CameraSurfa
         ObjectAnimator animator2 = ObjectAnimator.ofFloat(mVerifyLayout, "alpha", 1f, 0f);
 
         AnimatorSet animSet = new AnimatorSet();
-        animSet.setDuration(300);
+        animSet.setDuration(getResources().getInteger(android.R.integer.config_shortAnimTime));
         animSet.setInterpolator(new OvershootInterpolator());
         //两个动画同时执行
         animSet.playTogether(animator1, animator2, takeAnim1, takeAnim2);
