@@ -44,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // 初始化eyekey接口 （需在AndroidManifest.xml中添加appid和appkey）
         CheckAPI.init(this);
+
         mChoiceBtn = (Button) findViewById(R.id.choiceImgBtn);
         mCheckingBtn = (Button) findViewById(R.id.checkingImgBtn);
         mPathText = (TextView) findViewById(R.id.pathText);

@@ -18,6 +18,7 @@ public class App extends Application{
 		super.onCreate();
 		
 		SharedPreferenceUtil.getInstance().init(getApplicationContext());
+		// 初始化eyekey接口 （需在AndroidManifest.xml中添加appid和appkey）
 		CheckAPI.init(getApplicationContext());
 	}
 }

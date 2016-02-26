@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // 初始化eyekey接口 （需在AndroidManifest.xml中添加appid和appkey）
         CheckAPI.init(this);
 
         mImageView1 = (ImageView) findViewById(R.id.img1);
@@ -157,6 +159,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data == null)
+            return;
         Uri uri = data.getData();
         Log.e("uri", uri.toString());
         ContentResolver cr = this.getContentResolver();
