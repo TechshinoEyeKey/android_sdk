@@ -44,8 +44,9 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
- * eyekey API
- * @author wangzhi
+ * Created by wangzhi on 2016/1/15.
+ *
+ * eyekey人脸识别API
  */
 public class CheckAPI implements Constant {
 

@@ -20,12 +20,12 @@ import java.io.IOException;
  *
  * @author Xiaozhi
  */
-public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Callback,IConstants {
+public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Callback, IConstants {
 
     private static final String TAG = CameraSurfaceView.class.getSimpleName();
 
     private boolean hasSurface; // 是否存在摄像头显示层
-    private boolean isPortrait;
+    private boolean isPortrait = true;
     private Context mContext;
     private SurfaceHolder mSurfaceHolder;
     private CameraManager mCameraManager;
@@ -101,6 +101,7 @@ public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Call
                 // 没设定就是默认的了，呵呵
                 width = desiredWidth;
             }
+
             // 高度设定同上
             if (heightMode == MeasureSpec.EXACTLY) {
                 height = heightSize;
@@ -240,7 +241,7 @@ public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Call
         }
     }
 
-    public interface FaceCallback{
+    public interface FaceCallback {
         void onResullt(Bitmap[] bitmaps);
     }
 

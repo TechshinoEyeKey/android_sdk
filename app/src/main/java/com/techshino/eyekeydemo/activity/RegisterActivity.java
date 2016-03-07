@@ -122,10 +122,53 @@ public class RegisterActivity extends BaseAppcompatActivity implements CameraSur
 
         // 设置拍照回掉接口
         mSurfaceView.setFaceCallback(this);
-        setLayoutParams();
+
+        if (CustomUtil.isLandScape(this)) {
+            setLandLayoutParams();
+        } else {
+            setPortraitLayoutParams();
+        }
     }
 
-    private void setLayoutParams() {
+    private void setLandLayoutParams() {
+        mToolbar.setVisibility(View.GONE);
+
+        int screenWidth = MeasureUtil.getScreenSize(this)[0];
+        int screenHeight = MeasureUtil.getScreenSize(this)[1];
+        Logs.i(TAG,"screenWidth:" + screenWidth);
+        Logs.i(TAG,"screenHeight:" + screenHeight);
+        int mSurfaceViewWidth = screenHeight / 3 * 4;
+        FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mSurfaceView.getLayoutParams();
+        lp.width = mSurfaceViewWidth;
+        mSurfaceView.setLayoutParams(lp);
+
+        mImg1.post(new Runnable() {
+            @Override
+            public void run() {
+                LinearLayout.LayoutParams lp1 = (LinearLayout.LayoutParams) mImg1.getLayoutParams();
+                lp1.width = mImg1.getMeasuredHeight();
+                Log.i(TAG, "img1 width:" + mImg1.getWidth());
+                mImg1.setLayoutParams(lp1);
+
+                LinearLayout.LayoutParams lp2 = (LinearLayout.LayoutParams) mImg2.getLayoutParams();
+                lp2.width = mImg2.getMeasuredHeight();
+                mImg2.setLayoutParams(lp2);
+
+                LinearLayout.LayoutParams lp3 = (LinearLayout.LayoutParams) mImg3.getLayoutParams();
+                lp3.width = mImg3.getMeasuredHeight();
+                mImg3.setLayoutParams(lp3);
+            }
+        });
+
+        mTakeBtn.setAdjustViewBounds(true);
+
+        FrameLayout.LayoutParams bgLp = (FrameLayout.LayoutParams) mBgFrame.getLayoutParams();
+        bgLp.height = screenHeight / 5 * 3;
+        bgLp.width = bgLp.height / 4 * 3;
+        mBgFrame.setLayoutParams(bgLp);
+    }
+
+    private void setPortraitLayoutParams() {
         int screenWidth = MeasureUtil.getScreenSize(this)[0];
         int mSurfaceViewHeight = screenWidth / 3 * 4;
         FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mSurfaceView.getLayoutParams();
@@ -245,8 +288,8 @@ public class RegisterActivity extends BaseAppcompatActivity implements CameraSur
 
             @Override
             public void onResponse(Call<FaceAttrs> call, Response<FaceAttrs> response) {
-                onFinish();
                 handleFaceData(response.body());
+                onFinish();
             }
 
             @Override
@@ -315,6 +358,7 @@ public class RegisterActivity extends BaseAppcompatActivity implements CameraSur
      * 创建用户
      */
     private void createPeoplle() {
+        Logs.i(TAG,mFaceAll);
         Call<PeopleCreate> call = CheckAPI.peopleCreate(mFaceAll, mName, null, null);
         call.enqueue(new Callback<PeopleCreate>() {
 

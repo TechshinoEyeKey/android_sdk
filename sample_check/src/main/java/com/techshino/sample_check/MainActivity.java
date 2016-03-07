@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
         mChoiceBtn = (Button) findViewById(R.id.choiceImgBtn);
         mCheckingBtn = (Button) findViewById(R.id.checkingImgBtn);
-        mPathText = (TextView) findViewById(R.id.pathText);
         mResultText = (TextView) findViewById(R.id.resultText);
+        mPathText = (TextView) findViewById(R.id.pathText);
 
         mChoiceBtn.setOnClickListener(new View.OnClickListener() {
             @Override

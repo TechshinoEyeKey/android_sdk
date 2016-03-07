@@ -1,6 +1,7 @@
 package com.techshino.eyekeydemo.utils;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
@@ -40,6 +41,20 @@ public class CustomUtil {
 
     public static String getString(Context context, int resId) {
         return context.getString(resId);
+    }
+
+    public static boolean isLandScape(Context context) {
+        Configuration mConfiguration = context.getResources().getConfiguration(); //获取设置的配置信息
+        int ori = mConfiguration.orientation; //获取屏幕方向
+
+        if (ori == mConfiguration.ORIENTATION_LANDSCAPE) {
+            //横屏
+            return true;
+        } else if (ori == mConfiguration.ORIENTATION_PORTRAIT) {
+            //竖屏
+            return false;
+        }
+        return false;
     }
 
     /**
@@ -82,6 +97,9 @@ public class CustomUtil {
      * @return
      */
     public Bitmap collectBitmap(byte[] data, int width, int height, int orientation, int cameraId) {
+        Logs.i(TAG, "orientation:" + orientation);
+//        orientation = 0;
+
         Bitmap collectBitmap = null;
         Rect rect = new Rect(0, 0, width, height);
         YuvImage img = new YuvImage(data, ImageFormat.NV21, width, height, null);
