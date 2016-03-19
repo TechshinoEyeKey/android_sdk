@@ -22,7 +22,7 @@ public abstract class BaseAppcompatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        initWindow();
+//        initWindow();
         SmartBarUtils.hide(getWindow().getDecorView());
 
         initData();

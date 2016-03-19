@@ -145,6 +145,7 @@ public class VerifyActivity extends BaseAppcompatActivity implements CameraSurfa
         bgLp.width = screenWidth / 5 * 3;
         mBgFrame.setLayoutParams(bgLp);
         mTakeBtn.setAdjustViewBounds(true);
+        mVerifyImg.setAdjustViewBounds(true);
     }
 
     @Override
