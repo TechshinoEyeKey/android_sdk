@@ -12,6 +12,8 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/app_dev" />
             <option value="$PROJECT_DIR$/lib" />
+            <option value="$PROJECT_DIR$/librx" />
+            <option value="$PROJECT_DIR$/lvm" />
             <option value="$PROJECT_DIR$/sample_check" />
             <option value="$PROJECT_DIR$/sample_compare" />
           </set>
@@ -22,6 +24,8 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/app_dev" />
             <option value="$PROJECT_DIR$/lib" />
+            <option value="$PROJECT_DIR$/librx" />
+            <option value="$PROJECT_DIR$/lvm" />
             <option value="$PROJECT_DIR$/sample_check" />
             <option value="$PROJECT_DIR$/sample_compare" />
           </set>
