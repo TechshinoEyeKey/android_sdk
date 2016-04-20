@@ -16,7 +16,7 @@ eyekey接口封装在了lib模块中，如需引入自己的项目中将lib拷�
 ```java
 <application>
     <meta-data android:name="eyekey_appkey" android:value="your appkey"/>
-        <meta-data android:name="eyekey_appid" android:value="your appid"/>
+    <meta-data android:name="eyekey_appid" android:value="your appid"/>
 </application>
 ```
 
