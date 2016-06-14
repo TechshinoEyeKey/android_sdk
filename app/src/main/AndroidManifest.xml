@@ -53,8 +53,8 @@
             android:theme="@style/Theme.FullScreen"/>
 
         <!--添加自己的appkey和appid-->
-        <meta-data android:name="eyekey_appkey" android:value="867ded663b1443cdb8195ca0af14cbb4"/>
-        <meta-data android:name="eyekey_appid" android:value="8e322a50992e4907a1230b14f3389164"/>
+        <meta-data android:name="eyekey_appid" android:value="ea79bd9e1046417db25749d564d5c484"/>
+        <meta-data android:name="eyekey_appkey" android:value="5f6ab67f12ed4b159c3037b6c8421255"/>
     </application>
 
 </manifest>

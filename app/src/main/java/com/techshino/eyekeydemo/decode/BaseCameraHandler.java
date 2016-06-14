@@ -40,9 +40,7 @@ public class BaseCameraHandler extends Handler implements IConstants {
     /**
      * 默认构造，只允许包内调用
      *
-     * @param fragment
-     * @param mQueue
-     * @param cameraManager
+     * @param surfaceView
      */
     public BaseCameraHandler(CameraSurfaceView surfaceView) {
         this.mSurfaceView = surfaceView;

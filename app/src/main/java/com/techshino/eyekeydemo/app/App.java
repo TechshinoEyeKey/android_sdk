@@ -2,6 +2,8 @@ package com.techshino.eyekeydemo.app;
 
 import android.app.Application;
 
+import com.techshino.eyekeydemo.BuildConfig;
+import com.techshino.eyekeydemo.utils.Logs;
 import com.techshino.eyekeydemo.utils.SharedPreferenceUtil;
 import com.techshino.eyekeysdk.api.CheckAPI;
 
@@ -20,5 +22,6 @@ public class App extends Application{
 		SharedPreferenceUtil.getInstance().init(getApplicationContext());
 		// 初始化eyekey接口 （需在AndroidManifest.xml中添加appid和appkey）
 		CheckAPI.init(getApplicationContext());
+		Logs.setsIsLogEnabled(BuildConfig.DEBUG);
 	}
 }

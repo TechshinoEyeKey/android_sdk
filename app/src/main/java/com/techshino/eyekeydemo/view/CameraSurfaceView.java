@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.FrameLayout.LayoutParams;
-
 import com.techshino.eyekeydemo.camera.CameraManager;
 import com.techshino.eyekeydemo.decode.BaseCameraHandler;
 import com.techshino.eyekeydemo.decode.IConstants;

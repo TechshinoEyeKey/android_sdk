@@ -1,6 +1,17 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
+
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+def storePass = '123456'
+def keAlias = 'app'
+def keyPass = '123456'
+
+def keyStore = file('app.jks')
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -11,12 +22,58 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 2
         versionName "1.1"
+
+        manifestPlaceholders = [app_label:"@string/app_name"]
     }
-    buildTypes {
+
+    signingConfigs {
         release {
+            storeFile file('app.jks')
+            storePassword project.hasProperty('STOREPASS') ? STOREPASS : storePass
+            keyAlias project.hasProperty('KEYALIAS') ? KEYALIAS : keAlias
+            keyPassword project.hasProperty('KEYPASS') ? KEYPASS : keyPass
+        }
+    }
+
+    buildTypes {
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            if (keyStore.exists()) {
+                println "app: using xiaozhi's key"
+                signingConfig signingConfigs.release
+            } else {
+                println "app: using default key"
+            }
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                // 输出apk名称为app_release_lk_v2_2015-01-15.apk
+                def fileName = "app_eyekey_${variant.buildType.name}_v${defaultConfig.versionName}_${defaultConfig.versionCode}_${releaseTime()}.apk"
+                output.outputFile = new File(
+                        output.outputFile.parent + "/${variant.buildType.name}",
+                        fileName)
+            }
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/notice.txt'
     }
 
     compileOptions {

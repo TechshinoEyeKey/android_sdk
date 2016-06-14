@@ -45,13 +45,13 @@ final class CameraConfigurationManager {
     private static final int MAX_PREVIEW_PIXELS = 640 * 480; // 最大摄像头尺寸
 
     private final Context context;
-    private final View view;
+    private final View mView;
     private Point screenResolution;
     private Point cameraResolution;
 
     CameraConfigurationManager(Context context, View view) {
         this.context = context;
-        this.view = view;
+        this.mView = view;
     }
 
     /**
@@ -98,7 +98,7 @@ final class CameraConfigurationManager {
     }
 
     Point getViewResolution() {
-        return new Point(view.getWidth(), view.getHeight());
+        return new Point(mView.getWidth(), mView.getHeight());
     }
 
     Point getScreenResolution() {

@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.techshino.eyekeydemo.R;
 import com.techshino.eyekeysdk.api.CheckAPI;
 import com.techshino.eyekeysdk.conn.Constant;
@@ -21,7 +20,6 @@ import com.techshino.eyekeydemo.utils.Logs;
 import com.techshino.eyekeydemo.utils.SnackBarUtils;
 import com.techshino.eyekeydemo.utils.StringUtils;
 import com.techshino.eyekeydemo.utils.ToastUtils;
-
 import butterknife.Bind;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
