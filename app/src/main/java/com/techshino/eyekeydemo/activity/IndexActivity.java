@@ -10,16 +10,18 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.techshino.eyekeydemo.R;
-import com.techshino.eyekeysdk.api.CheckAPI;
-import com.techshino.eyekeysdk.conn.Constant;
-import com.techshino.eyekeysdk.entity.PeopleDelete;
-import com.techshino.eyekeysdk.entity.PeopleGet;
 import com.techshino.eyekeydemo.utils.CustomUtil;
 import com.techshino.eyekeydemo.utils.Logs;
 import com.techshino.eyekeydemo.utils.SnackBarUtils;
 import com.techshino.eyekeydemo.utils.StringUtils;
 import com.techshino.eyekeydemo.utils.ToastUtils;
+import com.techshino.eyekeysdk.api.CheckAPI;
+import com.techshino.eyekeysdk.conn.Constant;
+import com.techshino.eyekeysdk.entity.PeopleDelete;
+import com.techshino.eyekeysdk.entity.PeopleGet;
+
 import butterknife.Bind;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
@@ -215,7 +217,7 @@ public class IndexActivity extends BaseAppcompatActivity {
     }
 
     private void handleCheckData(PeopleGet data) {
-        Logs.d(TAG, data.toString());
+        Logs.d(TAG, data == null ? "认证失败" : data.toString());
 
         if (mAction == ACTION_VERIFY) {
             handleVerify(data);
@@ -226,7 +228,7 @@ public class IndexActivity extends BaseAppcompatActivity {
 
     private void handleRegister(PeopleGet data) {
         if (data == null) {
-            SnackBarUtils.showError(mTitleText, R.string.toast_enroll_failed);
+            SnackBarUtils.showError(mTitleText, "注册失败，请检查是否填写appid和appkey");
             return;
         }
         if (data.getRes_code() != null && Constant.RES_CODE_1025.equals(data.getRes_code())) {
@@ -242,7 +244,7 @@ public class IndexActivity extends BaseAppcompatActivity {
 
     private void handleVerify(PeopleGet data) {
         if (data == null) {
-            SnackBarUtils.showError(mTitleText, R.string.toast_verify_failed);
+            SnackBarUtils.showError(mTitleText, "认证失败，请检查是否填写appid和appkey");
             return;
         }
         if (data.getRes_code() != null && Constant.RES_CODE_1025.equals(data.getRes_code())) {
@@ -269,7 +271,7 @@ public class IndexActivity extends BaseAppcompatActivity {
 
     private void handleDelete(PeopleDelete data) {
         if (data == null) {
-            SnackBarUtils.showError(mContainer, R.string.toast_delete_failed);
+            SnackBarUtils.showError(mContainer, "删除失败，请检查是否填写appid和appkey");
             return;
         }
         if (data.getSuccess()) {
