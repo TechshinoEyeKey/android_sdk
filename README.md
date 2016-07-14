@@ -30,7 +30,7 @@ eyekey接口封装在了lib模块中，如需引入自己的项目中将lib拷�
 
 ## app
 该模块是一个基于eyekey的注册认证的应用，开发者可以参照该应用来进行相应的拍照人脸识别等开发；
-![](https://raw.githubusercontent.com/TechshinoEyeKey/android_sdk/master/screenshot/app_icon1.png)
+<img src="https://raw.githubusercontent.com/TechshinoEyeKey/android_sdk/master/screenshot/app_icon1.png" width="480" height="640"/>
 
 ## 注：
 Android SDK下载地址：[http://www.eyekey.com/devcenter/sdk/sdkdownload.html](http://www.eyekey.com/devcenter/sdk/sdkdownload.html)
