@@ -9,19 +9,18 @@ import com.techshino.eyekeysdk.api.CheckAPI;
 
 /**
  * 程序入口
- * 
- * @author wangzhi
  *
+ * @author wangzhi
  */
-public class App extends Application{
-	
-	@Override
-	public void onCreate() {
-		super.onCreate();
-		
-		SharedPreferenceUtil.getInstance().init(getApplicationContext());
-		// 初始化eyekey接口 （需在AndroidManifest.xml中添加appid和appkey）
-		CheckAPI.init(getApplicationContext());
-		Logs.setsIsLogEnabled(BuildConfig.DEBUG);
-	}
+public class App extends Application {
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+
+    SharedPreferenceUtil.getInstance().init(getApplicationContext());
+    // 初始化eyekey接口 （需在AndroidManifest.xml中添加appid和appkey）
+    CheckAPI.init(getApplicationContext());
+    Logs.setsIsLogEnabled(BuildConfig.DEBUG);
+  }
 }

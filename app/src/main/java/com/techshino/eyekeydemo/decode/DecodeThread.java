@@ -30,29 +30,29 @@ import java.util.concurrent.CountDownLatch;
  */
 public final class DecodeThread extends Thread {
 
-    private final CameraSurfaceView mCameraSurfaceView;
-    private Handler handler;
-    private final CountDownLatch handlerInitLatch;
+  private final CameraSurfaceView mCameraSurfaceView;
+  private final CountDownLatch handlerInitLatch;
+  private Handler handler;
 
-    public DecodeThread(CameraSurfaceView cameraSurfaceView) {
-        this.mCameraSurfaceView = cameraSurfaceView;
-        handlerInitLatch = new CountDownLatch(1);
-    }
+  public DecodeThread(CameraSurfaceView cameraSurfaceView) {
+    this.mCameraSurfaceView = cameraSurfaceView;
+    handlerInitLatch = new CountDownLatch(1);
+  }
 
-    public Handler getHandler() {
-        try {
-            handlerInitLatch.await();
-        } catch (InterruptedException ie) {
-            // continue?
-        }
-        return handler;
+  public Handler getHandler() {
+    try {
+      handlerInitLatch.await();
+    } catch (InterruptedException ie) {
+      // continue?
     }
+    return handler;
+  }
 
-    @Override
-    public void run() {
-        Looper.prepare();
-        handler = new DecodeHandler(mCameraSurfaceView);
-        handlerInitLatch.countDown();
-        Looper.loop();
-    }
+  @Override
+  public void run() {
+    Looper.prepare();
+    handler = new DecodeHandler(mCameraSurfaceView);
+    handlerInitLatch.countDown();
+    Looper.loop();
+  }
 }

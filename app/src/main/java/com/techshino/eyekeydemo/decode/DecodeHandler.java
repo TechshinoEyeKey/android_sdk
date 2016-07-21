@@ -29,64 +29,61 @@ import com.techshino.eyekeydemo.view.CameraSurfaceView.FaceCallback;
 
 public final class DecodeHandler extends Handler implements IConstants {
 
-    private static final String TAG = DecodeHandler.class.getSimpleName();
+  private static final String TAG = DecodeHandler.class.getSimpleName();
 
-    private final CameraSurfaceView mCameraSurfaceView;
-    private FaceCallback mFaceCallback;
+  private final CameraSurfaceView mCameraSurfaceView;
+  Handler handler = null;
+  Bitmap[] mBitmaps;
 
-    private boolean running = true;
+  // 超时30秒后返回,主要用于捕捉时超时
+  int index = 0;
+  private FaceCallback mFaceCallback;
+  private boolean running = true;
 
-    // 超时30秒后返回,主要用于捕捉时超时
+  DecodeHandler(CameraSurfaceView cameraSurfaceView) {
+    this.mCameraSurfaceView = cameraSurfaceView;
+    this.mFaceCallback = mCameraSurfaceView.getFaceCallback();
+    handler = cameraSurfaceView.getHandler();
+    mBitmaps = new Bitmap[3];
+  }
 
-    Handler handler = null;
-    Bitmap[] mBitmaps;
-
-    DecodeHandler(CameraSurfaceView cameraSurfaceView) {
-        this.mCameraSurfaceView = cameraSurfaceView;
-        this.mFaceCallback = mCameraSurfaceView.getFaceCallback();
-        handler = cameraSurfaceView.getHandler();
-        mBitmaps = new Bitmap[3];
+  @Override
+  public void handleMessage(Message message) {
+    if (!running) {
+      return;
     }
-
-    @Override
-    public void handleMessage(Message message) {
-        if (!running) {
-            return;
-        }
-        switch (message.what) {
-            case DECODE:
-                decodeArray((byte[]) message.obj, message.arg1, message.arg2);
-                break;
-            case QUIT:
-                running = false;
-                Looper.myLooper().quit();
-                break;
-        }
+    switch (message.what) {
+      case DECODE:
+        decodeArray((byte[]) message.obj, message.arg1, message.arg2);
+        break;
+      case QUIT:
+        running = false;
+        Looper.myLooper().quit();
+        break;
     }
+  }
 
-    int index = 0;
+  private void decodeArray(byte[] data, int width, int height) {
+    Log.i(TAG, "width:" + width + " height:" + height);
+    Bitmap bitmap = CustomUtil.getInstance(mCameraSurfaceView.getContext()).collectBitmap(data, width, height,
+        mCameraSurfaceView.getCameraManager().getOrientation(), mCameraSurfaceView.getCameraId());
+    if (bitmap == null)
+      return;
+    mBitmaps[index] = bitmap;
 
-    private void decodeArray(byte[] data, int width, int height) {
-        Log.i(TAG, "width:" + width + " height:" + height);
-        Bitmap bitmap = CustomUtil.getInstance(mCameraSurfaceView.getContext()).collectBitmap(data, width, height,
-                mCameraSurfaceView.getCameraManager().getOrientation(), mCameraSurfaceView.getCameraId());
-        if (bitmap == null)
-            return;
-        mBitmaps[index] = bitmap;
-
-        index++;
-        if (index < 3) {
-            MessageManager.sendToTarget(handler, RESTART_PREVIEW);
-        } else {
-            index = 0;
-            MessageManager.sendToTarget(handler, ON_RESULLT);
-            if (mFaceCallback != null)
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mFaceCallback.onResullt(mBitmaps);
-                    }
-                });
-        }
+    index++;
+    if (index < 3) {
+      MessageManager.sendToTarget(handler, RESTART_PREVIEW);
+    } else {
+      index = 0;
+      MessageManager.sendToTarget(handler, ON_RESULLT);
+      if (mFaceCallback != null)
+        handler.post(new Runnable() {
+          @Override
+          public void run() {
+            mFaceCallback.onResullt(mBitmaps);
+          }
+        });
     }
+  }
 }

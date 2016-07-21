@@ -5,11 +5,11 @@ package com.techshino.eyekeydemo.decode;
  */
 public interface IConstants {
 
-	int DECODE = 0;
-	
-	int QUIT = 1;
+  int DECODE = 0;
 
-	int RESTART_PREVIEW = 2;
+  int QUIT = 1;
 
-	int ON_RESULLT = 3;
+  int RESTART_PREVIEW = 2;
+
+  int ON_RESULLT = 3;
 }

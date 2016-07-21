@@ -12,40 +12,40 @@ import java.lang.reflect.Type;
  */
 public class GsonUtil {
 
-    private static GsonUtil mInstance = null;
+  private static GsonUtil mInstance = null;
 
-    private Gson mGson = null;
+  private Gson mGson = null;
 
-    private GsonUtil() {
-        mGson = new Gson();
+  private GsonUtil() {
+    mGson = new Gson();
+  }
+
+  public static GsonUtil getInstance() {
+    if (mInstance == null) {
+      mInstance = new GsonUtil();
     }
+    return mInstance;
+  }
 
-    public static GsonUtil getInstance() {
-        if (mInstance == null) {
-            mInstance = new GsonUtil();
-        }
-        return mInstance;
-    }
+  public Gson getGson() {
+    return mGson;
+  }
 
-    public Gson getGson() {
-        return mGson;
-    }
+  public <T> T gsonToEntity(JSONObject jsonObject, Class<T> clazz) {
+    return gsonToEntity(jsonObject.toString(), clazz);
+  }
 
-    public <T> T gsonToEntity(JSONObject jsonObject, Class<T> clazz) {
-        return gsonToEntity(jsonObject.toString(), clazz);
-    }
+  public <T> T gsonToEntity(JsonObject jsonObject, Type type) {
+    return gsonToEntity(jsonObject.toString(), type);
+  }
 
-    public <T> T gsonToEntity(JsonObject jsonObject, Type type) {
-        return gsonToEntity(jsonObject.toString(), type);
-    }
+  public <T> T gsonToEntity(String string, Type type) {
+    T obj = mGson.fromJson(string, type);
+    return obj;
+  }
 
-    public <T> T gsonToEntity(String string, Type type) {
-        T obj = mGson.fromJson(string, type);
-        return obj;
-    }
-
-    public <T> T gsonToEntity(String string, Class<T> clazz) {
-        T obj = mGson.fromJson(string, clazz);
-        return obj;
-    }
+  public <T> T gsonToEntity(String string, Class<T> clazz) {
+    T obj = mGson.fromJson(string, clazz);
+    return obj;
+  }
 }
