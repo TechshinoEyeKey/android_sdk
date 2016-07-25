@@ -19,11 +19,14 @@
     <string name="text_user_exist">用户已存在，不要重复注册</string>
     <string name="text_user_unregister">用户未注册</string>
     <string name="toast_enroll_failed">注册失败</string>
+    <string name="toast_enroll_no_id">注册失败，请检查是否填写appid和appkey</string>
     <string name="toast_verify_failed">认证失败</string>
+    <string name="toast_verify_no_id">认证失败，请检查是否填写appid和appkey</string>
     <string name="toast_no_faceId">未检测到人脸</string>
     <string name="toast_enroll_success">注册成功</string>
     <string name="toast_delete_success">删除成功</string>
     <string name="toast_delete_failed_no_user">删除失败，用户不存在</string>
     <string name="toast_delete_failed">删除失败</string>
+    <string name="toast_delete_no_id">删除失败，请检查是否填写appid和appkey</string>
 
 </resources>
