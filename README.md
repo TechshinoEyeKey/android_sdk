@@ -9,10 +9,38 @@ Github地址：[https://github.com/TechshinoEyeKey/android_sdk](https://github.c
 * 为了方便开发者使用以及跟随Google的潮流，本SDK使用了**OkHttp**和**retrofit2**等开源框架（ps：详细可下载源码观看）；
 
 ## 使用
-eyekey接口封装在了lib模块中，如需引入自己的项目中将lib拷贝到android studio项目中，引入如下：
->compile project(':lib')
+eyekey接口封装在了lib模块中，如需引入自己的项目中将lib拷贝到android studio项目中
 
-**AndroidManifest.xml**中设置appId和appKey
+* **setting.gradle**文件中加入： 
+> include ':lib'
+
+* 需要引入lib的模块中修改**build.gradle**
+``` java
+android {
+    // 改为本地自己最新的版本
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    // 改为本地自己最新的版本
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        // 改为本地自己的版本
+        minSdkVersion rootProject.ext.minSdkVersion
+        // 改为本地自己的版本
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    ...
+}
+
+dependencies {
+    // 引入lib
+    compile project(':lib')
+    ...
+}
+```
+
+* **AndroidManifest.xml**中设置appId和appKey
 ```java
 <application>
     <meta-data android:name="eyekey_appkey" android:value="your appkey"/>
