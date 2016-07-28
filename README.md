@@ -12,7 +12,9 @@ Github地址：[https://github.com/TechshinoEyeKey/android_sdk](https://github.c
 eyekey接口封装在了lib模块中，如需引入自己的项目中将lib拷贝到android studio项目中
 
 * **setting.gradle**文件中加入： 
-> include ':lib'
+```gradle
+include ':lib'
+```
 
 * 需要引入lib的模块中修改**build.gradle**
 ``` java
