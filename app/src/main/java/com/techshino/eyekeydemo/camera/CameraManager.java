@@ -210,7 +210,7 @@ public final class CameraManager {
   }
 
   /**
-   * Convenience method for {@link com.techshino.phoneface.ui.fragment.CameraFragment}
+   * Convenience method for
    */
   public synchronized void setTorch(boolean newSetting) {
     if (newSetting != configManager.getTorchState(camera)) {
