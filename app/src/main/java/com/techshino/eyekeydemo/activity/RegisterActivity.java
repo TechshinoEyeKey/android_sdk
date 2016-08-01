@@ -308,7 +308,7 @@ public class RegisterActivity extends BaseAppcompatActivity implements CameraSur
       return;
     }
     if (!isCreated) {
-      createPeoplle();
+      createPeople();
       return;
     }
     Call<PeopleAdd> call = CheckAPI.peopleAdd(mFaceAll, mName);
@@ -346,7 +346,7 @@ public class RegisterActivity extends BaseAppcompatActivity implements CameraSur
   /**
    * 创建用户
    */
-  private void createPeoplle() {
+  private void createPeople() {
     Logs.i(TAG, mFaceAll);
     Call<PeopleCreate> call = CheckAPI.peopleCreate(mFaceAll, mName, null, null);
     call.enqueue(new Callback<PeopleCreate>() {
