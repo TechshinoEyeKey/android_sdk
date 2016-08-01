@@ -358,7 +358,7 @@ public class CheckAPI implements Constant {
     }
 
     /**
-     * ·创建一个Crowd。一个Crowd最多允许包含1000个People。开发版最多允许创建5个crowd。
+     * ·创建一个Crowd。开发板Crowd最多允许包含100个People。开发版最多允许创建5个crowd。
      *
      * @param crowdName  (可选)Crowd的Name信息，必须在App中全局唯一。Name不能包含^@,&=*
      *                   '"等非法字符，且长度不得超过255。Name也可以不指定，此时系统将产生一个随机的name
