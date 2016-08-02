@@ -19,8 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <meta-data android:name="eyekey_appkey" android:value="your appkey"/>
         <meta-data android:name="eyekey_appid" android:value="your appid"/>
+        <meta-data android:name="eyekey_appkey" android:value="your appkey"/>
+
     </application>
 
 </manifest>

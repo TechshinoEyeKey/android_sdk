@@ -47,4 +47,14 @@ public class FaceIdentify {
   public void setUrl(String url) {
     this.url = url;
   }
+
+  @Override
+  public String toString() {
+    return "FaceIdentify{" +
+        "result=" + result +
+        ", face_id='" + face_id + '\'' +
+        ", img_id='" + img_id + '\'' +
+        ", url='" + url + '\'' +
+        '}';
+  }
 }
