@@ -1,33 +1,34 @@
 package com.techshino.eyekeysdk.entity;
+
 /**
  * 居中位置
- * @author wangzhi
  *
+ * @author wangzhi
  */
 public class Center {
-	
-	private int x;
 
-	private int y;
+  private int x;
 
-	public void setX(int x) {
-		this.x = x;
-	}
+  private int y;
 
-	public int getX() {
-		return this.x;
-	}
+  public int getX() {
+    return this.x;
+  }
 
-	public void setY(int y) {
-		this.y = y;
-	}
+  public void setX(int x) {
+    this.x = x;
+  }
 
-	public int getY() {
-		return this.y;
-	}
+  public int getY() {
+    return this.y;
+  }
 
-	@Override
-	public String toString() {
-		return "Center [x=" + x + ", y=" + y + "]";
-	}
+  public void setY(int y) {
+    this.y = y;
+  }
+
+  @Override
+  public String toString() {
+    return "Center [x=" + x + ", y=" + y + "]";
+  }
 }

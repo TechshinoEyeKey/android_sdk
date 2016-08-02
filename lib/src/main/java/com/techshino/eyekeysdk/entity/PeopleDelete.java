@@ -7,53 +7,53 @@ package com.techshino.eyekeysdk.entity;
  */
 public class PeopleDelete {
 
-    private int deleted;
+  private int deleted;
 
-    private String message;
+  private String message;
 
-    private String res_code;
+  private String res_code;
 
-    private boolean success;
+  private boolean success;
 
-    public void setDeleted(int deleted) {
-        this.deleted = deleted;
-    }
+  public int getDeleted() {
+    return this.deleted;
+  }
 
-    public int getDeleted() {
-        return this.deleted;
-    }
+  public void setDeleted(int deleted) {
+    this.deleted = deleted;
+  }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+  public String getMessage() {
+    return this.message;
+  }
 
-    public String getMessage() {
-        return this.message;
-    }
+  public void setMessage(String message) {
+    this.message = message;
+  }
 
-    public void setRes_code(String res_code) {
-        this.res_code = res_code;
-    }
+  public String getRes_code() {
+    return this.res_code;
+  }
 
-    public String getRes_code() {
-        return this.res_code;
-    }
+  public void setRes_code(String res_code) {
+    this.res_code = res_code;
+  }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
+  public boolean getSuccess() {
+    return this.success;
+  }
 
-    public boolean getSuccess() {
-        return this.success;
-    }
+  public void setSuccess(boolean success) {
+    this.success = success;
+  }
 
-    @Override
-    public String toString() {
-        return "PeopleDelete{" +
-                "deleted=" + deleted +
-                ", message='" + message + '\'' +
-                ", res_code='" + res_code + '\'' +
-                ", success=" + success +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "PeopleDelete{" +
+        "deleted=" + deleted +
+        ", message='" + message + '\'' +
+        ", res_code='" + res_code + '\'' +
+        ", success=" + success +
+        '}';
+  }
 }

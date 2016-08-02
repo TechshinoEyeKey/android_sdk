@@ -5,20 +5,20 @@ package com.techshino.eyekeysdk.entity;
  */
 public class MatchConfirm {
 
-    boolean result;
+  boolean result;
 
-    public boolean isResult() {
-        return result;
-    }
+  public boolean isResult() {
+    return result;
+  }
 
-    public void setResult(boolean result) {
-        this.result = result;
-    }
+  public void setResult(boolean result) {
+    this.result = result;
+  }
 
-    @Override
-    public String toString() {
-        return "MatchConfirm{" +
-                "result=" + result +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "MatchConfirm{" +
+        "result=" + result +
+        '}';
+  }
 }

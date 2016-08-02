@@ -36,10 +36,6 @@ public class IconView extends View {
   private float mTextHeight;
   private Rect mTextBound;
 
-  private enum Ratio {
-    WIDTH, HEIGHT;
-  }
-
   public IconView(Context context) {
     super(context);
     init(null, 0);
@@ -295,5 +291,9 @@ public class IconView extends View {
     mIconTextColor = iconTextColor;
     invalidateTextPaintAndMeasurements();
     postInvalidate();
+  }
+
+  private enum Ratio {
+    WIDTH, HEIGHT;
   }
 }

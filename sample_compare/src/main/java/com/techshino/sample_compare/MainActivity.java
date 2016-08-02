@@ -35,16 +35,14 @@ public class MainActivity extends AppCompatActivity {
 
   private static final int REQUEST_CODE1 = 11;
   private static final int REQUEST_CODE2 = 12;
-
-  private String mFaceId1;
-  private String mFaceId2;
-  private String mImgBase641;
-  private String mImgBase642;
-
   ImageView mImageView1;
   ImageView mImageView2;
   Button mCompareBtn;
   TextView mResultText;
+  private String mFaceId1;
+  private String mFaceId2;
+  private String mImgBase641;
+  private String mImgBase642;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

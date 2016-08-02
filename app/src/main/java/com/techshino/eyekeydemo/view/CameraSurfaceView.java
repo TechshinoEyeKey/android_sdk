@@ -31,6 +31,7 @@ public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Call
   private CameraManager mCameraManager;
   private BaseCameraHandler handler; // 这个是解码的回调句柄
   private int mCameraId = 1;
+  private FaceCallback mFaceCallback;
 
   public CameraSurfaceView(Context context) {
     super(context);
@@ -53,13 +54,13 @@ public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Call
     initOrientation();
   }
 
+  public int getCameraId() {
+    return mCameraId;
+  }
+
   public void setCameraId(int cameraId) {
     mCameraId = cameraId;
     mCameraManager.setManualCameraId(mCameraId);
-  }
-
-  public int getCameraId() {
-    return mCameraId;
   }
 
   private void initOrientation() {
@@ -191,7 +192,6 @@ public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
-
   public SurfaceHolder getSurfaceHolder() {
     return mSurfaceHolder;
   }
@@ -241,17 +241,15 @@ public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Call
     }
   }
 
-  public interface FaceCallback {
-    void onResullt(Bitmap[] bitmaps);
+  public FaceCallback getFaceCallback() {
+    return mFaceCallback;
   }
-
-  private FaceCallback mFaceCallback;
 
   public void setFaceCallback(FaceCallback faceCallback) {
     mFaceCallback = faceCallback;
   }
 
-  public FaceCallback getFaceCallback() {
-    return mFaceCallback;
+  public interface FaceCallback {
+    void onResullt(Bitmap[] bitmaps);
   }
 }
