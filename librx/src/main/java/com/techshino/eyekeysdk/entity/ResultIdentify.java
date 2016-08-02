@@ -8,9 +8,9 @@ public class ResultIdentify {
 
   private double similarity;
 
-  private String people_id;
+  private String person_id;
 
-  private String people_name;
+  private String person_name;
 
   public double getSimilarity() {
     return this.similarity;
@@ -20,19 +20,19 @@ public class ResultIdentify {
     this.similarity = similarity;
   }
 
-  public String getPeople_id() {
-    return this.people_id;
+  public String getPerson_id() {
+    return person_id;
   }
 
-  public void setPeople_id(String people_id) {
-    this.people_id = people_id;
+  public void setPerson_id(String person_id) {
+    this.person_id = person_id;
   }
 
-  public String getPeople_name() {
-    return this.people_name;
+  public String getPerson_name() {
+    return person_name;
   }
 
-  public void setPeople_name(String people_name) {
-    this.people_name = people_name;
+  public void setPerson_name(String person_name) {
+    this.person_name = person_name;
   }
 }
