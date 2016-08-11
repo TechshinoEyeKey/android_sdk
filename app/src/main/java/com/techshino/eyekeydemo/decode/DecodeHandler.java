@@ -65,8 +65,13 @@ public final class DecodeHandler extends Handler implements IConstants {
 
   private void decodeArray(byte[] data, int width, int height) {
     Log.i(TAG, "width:" + width + " height:" + height);
-    Bitmap bitmap = CustomUtil.getInstance(mCameraSurfaceView.getContext()).collectBitmap(data, width, height,
+
+    long start = System.currentTimeMillis();
+    Bitmap bitmap = CustomUtil.getInstance(mCameraSurfaceView.getContext()).rsYuvToRgb(data, width, height,
         mCameraSurfaceView.getCameraManager().getOrientation(), mCameraSurfaceView.getCameraId());
+    long end = System.currentTimeMillis();
+    Log.i(TAG, "转Bitmap花费时间：" + (end - start) + "ms");
+
     if (bitmap == null)
       return;
     mBitmaps[index] = bitmap;

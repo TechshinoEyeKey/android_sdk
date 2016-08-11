@@ -10,6 +10,11 @@ import android.graphics.Rect;
 import android.graphics.YuvImage;
 import android.hardware.Camera;
 import android.os.Environment;
+import android.support.v8.renderscript.Allocation;
+import android.support.v8.renderscript.Element;
+import android.support.v8.renderscript.RenderScript;
+import android.support.v8.renderscript.ScriptIntrinsicYuvToRGB;
+import android.support.v8.renderscript.Type;
 import android.util.Base64;
 import android.util.Log;
 
@@ -27,9 +32,13 @@ public class CustomUtil {
 
   private static CustomUtil sInstance = null;
   private Context mContext;
+  RenderScript mRenderScript;
+  ScriptIntrinsicYuvToRGB mIntrinsicYuvToRGB;
 
   private CustomUtil(Context context) {
     mContext = context;
+    mRenderScript = RenderScript.create(context);
+    mIntrinsicYuvToRGB = ScriptIntrinsicYuvToRGB.create(mRenderScript, Element.U8_4(mRenderScript));
   }
 
   public static CustomUtil getInstance(Context context) {
@@ -125,6 +134,25 @@ public class CustomUtil {
     Bitmap bitmap1 = getPicOrientation(bmp, orientation, cameraId);
     collectBitmap = bitmap1;
     return collectBitmap;
+  }
+
+  public Bitmap rsYuvToRgb(byte[] data, int width, int height, int orientation, int cameraId) {
+    Type.Builder yuvType = new Type.Builder(mRenderScript, Element.U8(mRenderScript)).setX(data.length);
+    Allocation in = Allocation.createTyped(mRenderScript, yuvType.create(), Allocation.USAGE_SCRIPT);
+
+    Type.Builder rgbaType = new Type.Builder(mRenderScript, Element.RGBA_8888(mRenderScript)).setX(width).setY(height);
+    Allocation out = Allocation.createTyped(mRenderScript, rgbaType.create(), Allocation.USAGE_SCRIPT);
+
+    in.copyFrom(data);
+
+    mIntrinsicYuvToRGB.setInput(in);
+    mIntrinsicYuvToRGB.forEach(out);
+
+    Bitmap temp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+    out.copyTo(temp);
+
+    Bitmap outBitmap = getPicOrientation(temp, orientation, cameraId);
+    return outBitmap;
   }
 
   public void writeBitmapToDisk(Bitmap bitmap, String filePath) {
