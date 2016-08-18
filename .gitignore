@@ -5,7 +5,4 @@
 /.idea/libraries
 .DS_Store
 /build
-/app_dev
-/lvm
 /captures
-/release

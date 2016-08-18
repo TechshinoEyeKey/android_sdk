@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.xiaozhi.lvm.demo.MainActivity">
+
+    <Button
+        android:id="@+id/getFaceIdBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取大佬的FaceId"/>
+
+    <Button
+        android:id="@+id/setCrowdFaceBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添加大佬到人群"/>
+
+    <Button
+        android:id="@+id/getCrowdInfoBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取人群信息"/>
+
+    <Button
+        android:id="@+id/getPeopleBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取People信息"/>
+</LinearLayout>

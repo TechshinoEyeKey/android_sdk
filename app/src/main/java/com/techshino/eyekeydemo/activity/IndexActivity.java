@@ -159,7 +159,7 @@ public class IndexActivity extends BaseAppcompatActivity {
   private void peopleDelete() {
     mProgressDialog.setMessage(CustomUtil.getString(IndexActivity.this, R.string.text_deleting));
     mProgressDialog.show();
-    Call<PeopleDelete> call = CheckAPI.peopleDelete(mName);
+    Call<PeopleDelete> call = CheckAPI.peopleDeleteByName(mName);
     call.enqueue(new Callback<PeopleDelete>() {
 
       public void onFinish() {
@@ -188,7 +188,7 @@ public class IndexActivity extends BaseAppcompatActivity {
 
     mProgressDialog.setMessage(CustomUtil.getString(IndexActivity.this, R.string.text_test));
     mProgressDialog.show();
-    Call<PeopleGet> call = CheckAPI.peopleGet(mName);
+    Call<PeopleGet> call = CheckAPI.peopleGetByName(mName);
     call.enqueue(new Callback<PeopleGet>() {
 
       public void onFinish() {
@@ -267,7 +267,7 @@ public class IndexActivity extends BaseAppcompatActivity {
       SnackBarUtils.showError(mContainer, R.string.toast_delete_no_id);
       return;
     }
-    if (data.getSuccess()) {
+    if (data.isSuccess()) {
       SnackBarUtils.show(mContainer, R.string.toast_delete_success);
     } else {
       if (StringUtils.isEquals(data.getRes_code(), Constant.RES_CODE_1025)) {

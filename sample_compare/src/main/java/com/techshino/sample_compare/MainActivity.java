@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
   void getFaceId1() {
-    CheckAPI.checkingImageData(mImgBase641, null, null).enqueue(new Callback<FaceAttrs>() {
+    CheckAPI.checkingImageByBase64(mImgBase641, null, null).enqueue(new Callback<FaceAttrs>() {
       @Override
       public void onResponse(Call<FaceAttrs> call, Response<FaceAttrs> response) {
         FaceAttrs faceAttrs = response.body();
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
   void getFaceId2() {
-    CheckAPI.checkingImageData(mImgBase642, null, null).enqueue(new Callback<FaceAttrs>() {
+    CheckAPI.checkingImageByBase64(mImgBase642, null, null).enqueue(new Callback<FaceAttrs>() {
       @Override
       public void onResponse(Call<FaceAttrs> call, Response<FaceAttrs> response) {
         FaceAttrs faceAttrs = response.body();

@@ -241,7 +241,7 @@ public class VerifyActivity extends BaseAppcompatActivity implements CameraSurfa
     String dataImage = CustomUtil.bitmapToBase64(bitmaps[1]);
     mProgressDialog.setMessage("验证中...");
     mProgressDialog.show();
-    Call<FaceAttrs> call = CheckAPI.checkingImageData(dataImage, null, null);
+    Call<FaceAttrs> call = CheckAPI.checkingImageByBase64(dataImage, null, null);
     call.enqueue(new Callback<FaceAttrs>() {
       @Override
       public void onResponse(Call<FaceAttrs> call, Response<FaceAttrs> response) {

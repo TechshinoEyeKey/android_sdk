@@ -39,7 +39,7 @@ public class PeopleDelete {
     this.res_code = res_code;
   }
 
-  public boolean getSuccess() {
+  public boolean isSuccess() {
     return this.success;
   }
 

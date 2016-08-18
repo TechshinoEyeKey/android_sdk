@@ -261,7 +261,7 @@ public class RegisterActivity extends BaseAppcompatActivity implements CameraSur
    * @param base64
    */
   private void getImageData(String base64) {
-    Call<FaceAttrs> call = CheckAPI.checkingImageData(base64, null, null);
+    Call<FaceAttrs> call = CheckAPI.checkingImageByBase64(base64, null, null);
     call.enqueue(new Callback<FaceAttrs>() {
 
       public void onFinish() {
@@ -311,7 +311,7 @@ public class RegisterActivity extends BaseAppcompatActivity implements CameraSur
       createPeople();
       return;
     }
-    Call<PeopleAdd> call = CheckAPI.peopleAdd(mFaceAll, mName);
+    Call<PeopleAdd> call = CheckAPI.peopleAddByName(mFaceAll, mName);
     call.enqueue(new Callback<PeopleAdd>() {
 
       public void onFinish() {

@@ -54,26 +54,26 @@ public class CheckAPI implements Constant {
   /**
    * 检测给定图片(Image)中的所有人脸(Face)的位置和相应的面部属性
    *
-   * @param dataImage 待检测图片数据信息,通过POST方法上传的二进制数据，原始图片大小需要小于3M
-   * @param mode      (可选)检测模式 (默认) oneface
-   *                  。在oneface模式中，检测器仅找出图片中最大的一张脸。如果图中有多张人脸大小相同，随机返回一张人脸信息。
-   * @param tip       (可选)指定一个不包含^@,&=*'"等非法字符且不超过255字节的字符串作为tip
+   * @param base64 待检测图片数据信息,通过POST方法上传的二进制数据，原始图片大小需要小于3M
+   * @param mode   (可选)检测模式 (默认) oneface
+   *               。在oneface模式中，检测器仅找出图片中最大的一张脸。如果图中有多张人脸大小相同，随机返回一张人脸信息。
+   * @param tip    (可选)指定一个不包含^@,&=*'"等非法字符且不超过255字节的字符串作为tip
    */
-  public static Observable<FaceAttrs> checkingImageData(String dataImage, String mode, String tip) {
-    return sEyekeyManagerService.checkingImageData(APP_ID, APP_KEY, dataImage, mode, tip);
+  public static Observable<FaceAttrs> checkingImageByBase64(String base64, String mode, String tip) {
+    return sEyekeyManagerService.checkingImageData(APP_ID, APP_KEY, base64, mode, tip);
   }
 
   /**
    * 检测给定图片(Image)中的所有人脸(Face)的位置和相应的面部属性
    *
-   * @param urlImage 待检测图片url
-   * @param mode     (可选)检测模式 (默认) oneface
-   *                 。在oneface模式中，检测器仅找出图片中最大的一张脸。如果图中有多张人脸大小相同，随机返回一张人脸信息。
-   * @param tip      (可选)指定一个不包含^@,&=*'"等非法字符且不超过255字节的字符串作为tip
+   * @param url  待检测图片url
+   * @param mode (可选)检测模式 (默认) oneface
+   *             。在oneface模式中，检测器仅找出图片中最大的一张脸。如果图中有多张人脸大小相同，随机返回一张人脸信息。
+   * @param tip  (可选)指定一个不包含^@,&=*'"等非法字符且不超过255字节的字符串作为tip
    * @return
    */
-  public static Observable<FaceAttrs> checkingImageUrl(String urlImage, String mode, String tip) {
-    return sEyekeyManagerService.checkingImageUrl(APP_ID, APP_KEY, urlImage, mode, tip);
+  public static Observable<FaceAttrs> checkingImageByUrl(String url, String mode, String tip) {
+    return sEyekeyManagerService.checkingImageUrl(APP_ID, APP_KEY, url, mode, tip);
   }
 
   /**
@@ -281,7 +281,7 @@ public class CheckAPI implements Constant {
    * @return
    */
   public static Observable<PeopleGet> peopleGet(String peopleName) {
-    return sEyekeyManagerService.peopleGet(APP_ID, APP_KEY, peopleName);
+    return sEyekeyManagerService.peopleGet(APP_ID, APP_KEY, peopleName, "face");
   }
 
   /**
@@ -528,7 +528,8 @@ public class CheckAPI implements Constant {
     Observable<PeopleGet> peopleGet(
         @Query("app_id") String appId,
         @Query("app_key") String appKey,
-        @Query("people_name") String peopleName
+        @Query("people_name") String peopleName,
+        @Query("type") String type
     );
 
     @GET(Constant.Crowd + "/crowd_create")

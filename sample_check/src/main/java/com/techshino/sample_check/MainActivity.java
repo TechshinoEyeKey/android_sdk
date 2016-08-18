@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
   private void checkingImg() {
     mResultText.setText("加载中...");
-    Call<FaceAttrs> call = CheckAPI.checkingImageData(mImgBase64, null, null);
+    Call<FaceAttrs> call = CheckAPI.checkingImageByBase64(mImgBase64, null, null);
     call.enqueue(new Callback<FaceAttrs>() {
 
       @Override

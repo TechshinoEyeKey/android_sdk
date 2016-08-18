@@ -83,13 +83,13 @@ public class CheckAPI implements Constant {
   /**
    * 检测给定图片(Image)中的所有人脸(Face)的位置和相应的面部属性
    *
-   * @param dataImage 待检测图片数据信息,通过POST方法上传的二进制数据，原始图片大小需要小于3M
-   * @param mode      (可选)检测模式 (默认) oneface
-   *                  。在oneface模式中，检测器仅找出图片中最大的一张脸。如果图中有多张人脸大小相同，随机返回一张人脸信息。
-   * @param tip       (可选)指定一个不包含^@,&=*'"等非法字符且不超过255字节的字符串作为tip
+   * @param base64 待检测图片数据信息,通过POST方法上传的二进制数据，原始图片大小需要小于3M
+   * @param mode   (可选)检测模式 (默认) oneface
+   *               。在oneface模式中，检测器仅找出图片中最大的一张脸。如果图中有多张人脸大小相同，随机返回一张人脸信息。
+   * @param tip    (可选)指定一个不包含^@,&=*'"等非法字符且不超过255字节的字符串作为tip
    */
-  public static Call<FaceAttrs> checkingImageData(String dataImage, String mode, String tip) {
-    Call<FaceAttrs> call = sEyekeyManagerService.checkingImageData(sAppId, sAppKey, dataImage, mode, tip);
+  public static Call<FaceAttrs> checkingImageByBase64(String base64, String mode, String tip) {
+    Call<FaceAttrs> call = sEyekeyManagerService.checkingImageBase64(sAppId, sAppKey, base64, mode, tip);
     sCalls.add(call);
     return call;
   }
@@ -97,14 +97,14 @@ public class CheckAPI implements Constant {
   /**
    * 检测给定图片(Image)中的所有人脸(Face)的位置和相应的面部属性
    *
-   * @param urlImage 待检测图片url
-   * @param mode     (可选)检测模式 (默认) oneface
-   *                 。在oneface模式中，检测器仅找出图片中最大的一张脸。如果图中有多张人脸大小相同，随机返回一张人脸信息。
-   * @param tip      (可选)指定一个不包含^@,&=*'"等非法字符且不超过255字节的字符串作为tip
+   * @param url  待检测图片url
+   * @param mode (可选)检测模式 (默认) oneface
+   *             。在oneface模式中，检测器仅找出图片中最大的一张脸。如果图中有多张人脸大小相同，随机返回一张人脸信息。
+   * @param tip  (可选)指定一个不包含^@,&=*'"等非法字符且不超过255字节的字符串作为tip
    * @return
    */
-  public static Call<FaceAttrs> checkingImageUrl(String urlImage, String mode, String tip) {
-    Call<FaceAttrs> call = sEyekeyManagerService.checkingImageUrl(sAppId, sAppKey, urlImage, mode, tip);
+  public static Call<FaceAttrs> checkingImageByUrl(String url, String mode, String tip) {
+    Call<FaceAttrs> call = sEyekeyManagerService.checkingImageUrl(sAppId, sAppKey, url, mode, tip);
     sCalls.add(call);
     return call;
   }
@@ -291,11 +291,23 @@ public class CheckAPI implements Constant {
   /**
    * 删除一组People
    *
-   * @param peopleName 用逗号隔开的待删除的People id列表或者name列表
+   * @param peopleName 用逗号隔开的待删除的People name列表
    * @return
    */
-  public static Call<PeopleDelete> peopleDelete(String peopleName) {
-    Call<PeopleDelete> call = sEyekeyManagerService.peopleDelete(sAppId, sAppKey, peopleName);
+  public static Call<PeopleDelete> peopleDeleteByName(String peopleName) {
+    Call<PeopleDelete> call = sEyekeyManagerService.peopleDeleteByName(sAppId, sAppKey, peopleName);
+    sCalls.add(call);
+    return call;
+  }
+
+  /**
+   * 删除一组People
+   *
+   * @param peopleId 用逗号隔开的待删除的People id列表
+   * @return
+   */
+  public static Call<PeopleDelete> peopleDeleteById(String peopleId) {
+    Call<PeopleDelete> call = sEyekeyManagerService.peopleDeleteById(sAppId, sAppKey, peopleId);
     sCalls.add(call);
     return call;
   }
@@ -304,11 +316,24 @@ public class CheckAPI implements Constant {
    * ·将一组Face加入到一个People中。注意，一个Face只能被加入到一个People中。 ·一个People最多允许包含10000个Face
    *
    * @param faceId     一组用逗号分隔的face_id,表示将这些Face加入到相应People中。
-   * @param peopleName 相应People的name或者id
+   * @param peopleName 相应People的name
    * @return
    */
-  public static Call<PeopleAdd> peopleAdd(String faceId, String peopleName) {
-    Call<PeopleAdd> call = sEyekeyManagerService.peopleAdd(sAppId, sAppKey, faceId, peopleName);
+  public static Call<PeopleAdd> peopleAddByName(String faceId, String peopleName) {
+    Call<PeopleAdd> call = sEyekeyManagerService.peopleAddByName(sAppId, sAppKey, faceId, peopleName);
+    sCalls.add(call);
+    return call;
+  }
+
+  /**
+   * ·将一组Face加入到一个People中。注意，一个Face只能被加入到一个People中。 ·一个People最多允许包含10000个Face
+   *
+   * @param faceId   一组用逗号分隔的face_id,表示将这些Face加入到相应People中。
+   * @param peopleId 相应People的id
+   * @return
+   */
+  public static Call<PeopleAdd> peopleAddById(String faceId, String peopleId) {
+    Call<PeopleAdd> call = sEyekeyManagerService.peopleAddById(sAppId, sAppKey, faceId, peopleId);
     sCalls.add(call);
     return call;
   }
@@ -316,13 +341,27 @@ public class CheckAPI implements Constant {
   /**
    * 删除People中的一个或多个Face
    *
-   * @param peopleName 相应People的name或者id
+   * @param peopleName 相应People的name
    * @param faceId     可传入一组用逗号分隔的face_id列表，表示将这些face从指定的People中删除。开发者也可以指定face_id=
    *                   all, 表示删除People所有相关Face。
    * @return
    */
-  public static Call<PeopleRemove> peopleRemove(String peopleName, String faceId) {
-    Call<PeopleRemove> call = sEyekeyManagerService.peopleRemove(sAppId, sAppKey, peopleName, faceId);
+  public static Call<PeopleRemove> peopleRemoveByName(String peopleName, String faceId) {
+    Call<PeopleRemove> call = sEyekeyManagerService.peopleRemoveByName(sAppId, sAppKey, peopleName, faceId);
+    sCalls.add(call);
+    return call;
+  }
+
+  /**
+   * 删除People中的一个或多个Face
+   *
+   * @param peopleId 相应People的id
+   * @param faceId   可传入一组用逗号分隔的face_id列表，表示将这些face从指定的People中删除。开发者也可以指定face_id=
+   *                 all, 表示删除People所有相关Face。
+   * @return
+   */
+  public static Call<PeopleRemove> peopleRemoveById(String peopleId, String faceId) {
+    Call<PeopleRemove> call = sEyekeyManagerService.peopleRemoveById(sAppId, sAppKey, peopleId, faceId);
     sCalls.add(call);
     return call;
   }
@@ -330,13 +369,27 @@ public class CheckAPI implements Constant {
   /**
    * 设置People的name和tip
    *
-   * @param peopleName 相应People的name或者id
+   * @param peopleName 相应People的name
    * @param name       新的name(可选)
    * @param tip        新的tip(可选)
    * @return
    */
-  public static Call<PeopleSet> peopleSet(String peopleName, String name, String tip) {
-    Call<PeopleSet> call = sEyekeyManagerService.peopleSet(sAppId, sAppKey, peopleName, name, tip);
+  public static Call<PeopleSet> peopleSetByName(String peopleName, String name, String tip) {
+    Call<PeopleSet> call = sEyekeyManagerService.peopleSetByName(sAppId, sAppKey, peopleName, name, tip);
+    sCalls.add(call);
+    return call;
+  }
+
+  /**
+   * 设置People的name和tip
+   *
+   * @param peopleId 相应People的id
+   * @param name     新的name(可选)
+   * @param tip      新的tip(可选)
+   * @return
+   */
+  public static Call<PeopleSet> peopleSetById(String peopleId, String name, String tip) {
+    Call<PeopleSet> call = sEyekeyManagerService.peopleSetById(sAppId, sAppKey, peopleId, name, tip);
     sCalls.add(call);
     return call;
   }
@@ -344,11 +397,23 @@ public class CheckAPI implements Constant {
   /**
    * 获取一个People的信息, 包括name, id, tip, 相关的face, 以及crowds等信息
    *
-   * @param peopleName 相应People的name或者id
+   * @param peopleName 相应People的name
    * @return
    */
-  public static Call<PeopleGet> peopleGet(String peopleName) {
-    Call<PeopleGet> call = sEyekeyManagerService.peopleGet(sAppId, sAppKey, peopleName);
+  public static Call<PeopleGet> peopleGetByName(String peopleName) {
+    Call<PeopleGet> call = sEyekeyManagerService.peopleGetByName(sAppId, sAppKey, peopleName, "face");
+    sCalls.add(call);
+    return call;
+  }
+
+  /**
+   * 获取一个People的信息, 包括name, id, tip, 相关的face, 以及crowds等信息
+   *
+   * @param peopleId 相应People的id
+   * @return
+   */
+  public static Call<PeopleGet> peopleGetById(String peopleId) {
+    Call<PeopleGet> call = sEyekeyManagerService.peopleGetById(sAppId, sAppKey, peopleId, "face");
     sCalls.add(call);
     return call;
   }
@@ -358,13 +423,29 @@ public class CheckAPI implements Constant {
    *
    * @param crowdName  (可选)Crowd的Name信息，必须在App中全局唯一。Name不能包含^@,&=*
    *                   '"等非法字符，且长度不得超过255。Name也可以不指定，此时系统将产生一个随机的name
-   * @param peopleName (可选)一组用逗号分隔的people_id或people_name,
+   * @param peopleName (可选)一组用逗号分隔的people_name,
    *                   表示将这些People加入到该Crowd中。注意，一个People可以被加入到多个Crowd中。
    * @param tip        (可选)Crowd的tip，不需要全局唯一，不能包含^@,&=*'"等非法字符，长度不能超过255
    * @return
    */
-  public static Call<CrowdCreate> crowdCreate(String crowdName, String peopleName, String tip) {
-    Call<CrowdCreate> call = sEyekeyManagerService.crowdCreate(sAppId, sAppKey, crowdName, peopleName, tip);
+  public static Call<CrowdCreate> crowdCreateWithName(String crowdName, String peopleName, String tip) {
+    Call<CrowdCreate> call = sEyekeyManagerService.crowdCreateWithName(sAppId, sAppKey, crowdName, peopleName, tip);
+    sCalls.add(call);
+    return call;
+  }
+
+  /**
+   * ·创建一个Crowd。开发板Crowd最多允许包含100个People。开发版最多允许创建5个crowd。
+   *
+   * @param crowdName (可选)Crowd的Name信息，必须在App中全局唯一。Name不能包含^@,&=*
+   *                  '"等非法字符，且长度不得超过255。Name也可以不指定，此时系统将产生一个随机的name
+   * @param peopleId  (可选)一组用逗号分隔的people_id,
+   *                  表示将这些People加入到该Crowd中。注意，一个People可以被加入到多个Crowd中。
+   * @param tip       (可选)Crowd的tip，不需要全局唯一，不能包含^@,&=*'"等非法字符，长度不能超过255
+   * @return
+   */
+  public static Call<CrowdCreate> crowdCreateWithId(String crowdName, String peopleId, String tip) {
+    Call<CrowdCreate> call = sEyekeyManagerService.crowdCreateWithId(sAppId, sAppKey, crowdName, peopleId, tip);
     sCalls.add(call);
     return call;
   }
@@ -372,11 +453,23 @@ public class CheckAPI implements Constant {
   /**
    * 删除一组Crowd。
    *
-   * @param crowdName 一组用逗号分割的crowd_id或crowd_name，表示删除这些Crowd
+   * @param crowdName 一组用逗号分割的crowd_name，表示删除这些Crowd
    * @return
    */
-  public static Call<CrowdDelete> crowdDelete(String crowdName) {
-    Call<CrowdDelete> call = sEyekeyManagerService.crowdDelete(sAppId, sAppKey, crowdName);
+  public static Call<CrowdDelete> crowdDeleteByName(String crowdName) {
+    Call<CrowdDelete> call = sEyekeyManagerService.crowdDeleteByName(sAppId, sAppKey, crowdName);
+    sCalls.add(call);
+    return call;
+  }
+
+  /**
+   * 删除一组Crowd。
+   *
+   * @param crowdId 一组用逗号分割的crowd_id，表示删除这些Crowd
+   * @return
+   */
+  public static Call<CrowdDelete> crowdDeleteById(String crowdId) {
+    Call<CrowdDelete> call = sEyekeyManagerService.crowdDeleteById(sAppId, sAppKey, crowdId);
     sCalls.add(call);
     return call;
   }
@@ -411,12 +504,25 @@ public class CheckAPI implements Constant {
   /**
    * 获取Crowd的信息，包括Crowd中的People列表，Crowd的tip等信息。
    *
-   * @param crowdName 待查询Crowd的id或name。开发者也可以指定crowd_id=none，
+   * @param crowdName 待查询Crowd的name
    *                  此时将返回所有未加入任何Crowd的People。
    * @return
    */
-  public static Call<CrowdGet> crowdGet(String crowdName) {
-    Call<CrowdGet> call = sEyekeyManagerService.crowdGet(sAppId, sAppKey, crowdName);
+  public static Call<CrowdGet> crowdGetByName(String crowdName) {
+    Call<CrowdGet> call = sEyekeyManagerService.crowdGetByName(sAppId, sAppKey, crowdName);
+    sCalls.add(call);
+    return call;
+  }
+
+  /**
+   * 获取Crowd的信息，包括Crowd中的People列表，Crowd的tip等信息。
+   *
+   * @param crowdId 待查询Crowd的id。开发者也可以指定crowd_id=none，
+   *                此时将返回所有未加入任何Crowd的People。
+   * @return
+   */
+  public static Call<CrowdGet> crowdGetById(String crowdId) {
+    Call<CrowdGet> call = sEyekeyManagerService.crowdGetById(sAppId, sAppKey, crowdId);
     sCalls.add(call);
     return call;
   }
@@ -445,10 +551,10 @@ public class CheckAPI implements Constant {
 
     @FormUrlEncoded
     @POST(Constant.Check + "/checking")
-    Call<FaceAttrs> checkingImageData(
+    Call<FaceAttrs> checkingImageBase64(
         @Field("app_id") String appId,
         @Field("app_key") String appKey,
-        @Field("img") String dataImage,
+        @Field("img") String base64,
         @Field("mode") String mode,
         @Field("tip") String tip
     );
@@ -573,30 +679,53 @@ public class CheckAPI implements Constant {
 
 
     @GET(Constant.People + "/people_delete")
-    Call<PeopleDelete> peopleDelete(
+    Call<PeopleDelete> peopleDeleteByName(
         @Query("app_id") String appId,
         @Query("app_key") String appKey,
         @Query("people_name") String peopleName
     );
 
+    @GET(Constant.People + "/people_delete")
+    Call<PeopleDelete> peopleDeleteById(
+        @Query("app_id") String appId,
+        @Query("app_key") String appKey,
+        @Query("people_id") String peopleId
+    );
+
     @GET(Constant.People + "/people_add")
-    Call<PeopleAdd> peopleAdd(
+    Call<PeopleAdd> peopleAddByName(
         @Query("app_id") String appId,
         @Query("app_key") String appKey,
         @Query("face_id") String faceId,
         @Query("people_name") String peopleName
     );
 
+    @GET(Constant.People + "/people_add")
+    Call<PeopleAdd> peopleAddById(
+        @Query("app_id") String appId,
+        @Query("app_key") String appKey,
+        @Query("face_id") String faceId,
+        @Query("people_id") String peopleId
+    );
+
     @GET(Constant.People + "/people_remove")
-    Call<PeopleRemove> peopleRemove(
+    Call<PeopleRemove> peopleRemoveByName(
         @Query("app_id") String appId,
         @Query("app_key") String appKey,
         @Query("people_name") String peopleName,
         @Query("face_id") String faceId
     );
 
+    @GET(Constant.People + "/people_remove")
+    Call<PeopleRemove> peopleRemoveById(
+        @Query("app_id") String appId,
+        @Query("app_key") String appKey,
+        @Query("people_id") String peopleId,
+        @Query("face_id") String faceId
+    );
+
     @GET(Constant.People + "/people_set")
-    Call<PeopleSet> peopleSet(
+    Call<PeopleSet> peopleSetByName(
         @Query("app_id") String appId,
         @Query("app_key") String appKey,
         @Query("people_name") String peopleName,
@@ -604,15 +733,33 @@ public class CheckAPI implements Constant {
         @Query("tip") String tip
     );
 
-    @GET(Constant.People + "/people_get")
-    Call<PeopleGet> peopleGet(
+    @GET(Constant.People + "/people_set")
+    Call<PeopleSet> peopleSetById(
         @Query("app_id") String appId,
         @Query("app_key") String appKey,
-        @Query("people_name") String peopleName
+        @Query("people_id") String peopleId,
+        @Query("name") String name,
+        @Query("tip") String tip
+    );
+
+    @GET(Constant.People + "/people_get")
+    Call<PeopleGet> peopleGetByName(
+        @Query("app_id") String appId,
+        @Query("app_key") String appKey,
+        @Query("people_name") String peopleName,
+        @Query("type") String type
+    );
+
+    @GET(Constant.People + "/people_get")
+    Call<PeopleGet> peopleGetById(
+        @Query("app_id") String appId,
+        @Query("app_key") String appKey,
+        @Query("people_id") String peopleId,
+        @Query("type") String type
     );
 
     @GET(Constant.Crowd + "/crowd_create")
-    Call<CrowdCreate> crowdCreate(
+    Call<CrowdCreate> crowdCreateWithName(
         @Query("app_id") String appId,
         @Query("app_key") String appKey,
         @Query("crowd_name") String crowdName,
@@ -620,11 +767,27 @@ public class CheckAPI implements Constant {
         @Query("tip") String tip
     );
 
+    @GET(Constant.Crowd + "/crowd_create")
+    Call<CrowdCreate> crowdCreateWithId(
+        @Query("app_id") String appId,
+        @Query("app_key") String appKey,
+        @Query("crowd_name") String crowdName,
+        @Query("people_id") String peopleId,
+        @Query("tip") String tip
+    );
+
     @GET(Constant.Crowd + "/crowd_delete")
-    Call<CrowdDelete> crowdDelete(
+    Call<CrowdDelete> crowdDeleteByName(
         @Query("app_id") String appId,
         @Query("app_key") String appKey,
         @Query("crowd_name") String crowdName
+    );
+
+    @GET(Constant.Crowd + "/crowd_delete")
+    Call<CrowdDelete> crowdDeleteById(
+        @Query("app_id") String appId,
+        @Query("app_key") String appKey,
+        @Query("crowd_id") String crowdId
     );
 
     @GET(Constant.Crowd + "/crowd_remove")
@@ -644,10 +807,17 @@ public class CheckAPI implements Constant {
     );
 
     @GET(Constant.Crowd + "/crowd_get")
-    Call<CrowdGet> crowdGet(
+    Call<CrowdGet> crowdGetByName(
         @Query("app_id") String appId,
         @Query("app_key") String appKey,
         @Query("crowd_name") String crowdName
+    );
+
+    @GET(Constant.Crowd + "/crowd_get")
+    Call<CrowdGet> crowdGetById(
+        @Query("app_id") String appId,
+        @Query("app_key") String appKey,
+        @Query("crowd_id") String crowdId
     );
 
     @GET(Constant.Info + "/get_appinfo")
