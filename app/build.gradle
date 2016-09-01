@@ -20,7 +20,7 @@ android {
         applicationId "com.techshino.eyeskeydemo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 4
+        versionCode 5
         versionName "1.2"
 
         manifestPlaceholders = [app_label:"@string/app_name"]
