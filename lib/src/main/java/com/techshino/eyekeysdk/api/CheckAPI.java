@@ -5,7 +5,6 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
-
 import com.techshino.eyekeysdk.conn.Constant;
 import com.techshino.eyekeysdk.entity.AppInfo;
 import com.techshino.eyekeysdk.entity.CrowdAddAndRemove;
@@ -31,9 +30,7 @@ import com.techshino.eyekeysdk.entity.PeopleDelete;
 import com.techshino.eyekeysdk.entity.PeopleGet;
 import com.techshino.eyekeysdk.entity.PeopleRemove;
 import com.techshino.eyekeysdk.entity.PeopleSet;
-
 import java.util.ArrayList;
-
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

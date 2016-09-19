@@ -20,6 +20,8 @@ import android.annotation.TargetApi;
 import android.hardware.Camera;
 import android.util.Log;
 
+import com.techshino.eyekeydemo.utils.Logs;
+
 /**
  * Implementation for Android API 9 (Gingerbread) and later. This opens up the possibility of accessing
  * front cameras, and rotated cameras.
@@ -37,8 +39,8 @@ public final class GingerbreadOpenCameraInterface {
    * @return handle to {@link Camera} that was opened
    */
   public static Camera open(int cameraId) {
-
     int numCameras = Camera.getNumberOfCameras();
+    Logs.i(TAG,"摄像头个数：" + numCameras);
     if (numCameras == 0) {
       Log.w(TAG, "No cameras!");
       return null;
