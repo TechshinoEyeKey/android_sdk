@@ -7,7 +7,7 @@ public class Result {
 
   private String face_id;
 
-  private int similarity;
+  private double similarity;
 
   private String img_id;
 
@@ -21,7 +21,7 @@ public class Result {
     this.face_id = face_id;
   }
 
-  public int getSimilarity() {
+  public double getSimilarity() {
     return this.similarity;
   }
 
