@@ -67,7 +67,6 @@ public class RegisterActivity extends BaseAppcompatActivity implements CameraSur
   @Bind(R.id.bgFrame)
   ImageView mBgFrame;
   ProgressDialog mProgressDialog;
-  private int mCameraId;
   private String mName;
   /**
    * 是否已经创建people
@@ -84,24 +83,19 @@ public class RegisterActivity extends BaseAppcompatActivity implements CameraSur
   @Override
   public void initData() {
     Intent intent = getIntent();
-    mCameraId = intent.getIntExtra(ARG_CAMERA_ID, 1);
+    int cameraId = intent.getIntExtra(ARG_CAMERA_ID, 1);
     mName = intent.getStringExtra(ARG_NAME);
     isCreated = intent.getBooleanExtra(ARG_IS_CREATED, false);
 
     mProgressDialog = new ProgressDialog(this);
     mProgressDialog.setCancelable(false);
 
-    mSurfaceView.setCameraId(mCameraId);
+    mSurfaceView.setCameraId(cameraId);
     setSupportActionBar(mToolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setTitle("");
     mToolbar.setBackgroundColor(Color.TRANSPARENT);
-    mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        RegisterActivity.this.finish();
-      }
-    });
+    mToolbar.setNavigationOnClickListener(v -> RegisterActivity.this.finish());
     mSoundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 5);
     try {
       mSoundPool.load(getAssets().openFd("prompt.wav"), 1);
@@ -131,22 +125,19 @@ public class RegisterActivity extends BaseAppcompatActivity implements CameraSur
     lp.width = mSurfaceViewWidth;
     mSurfaceView.setLayoutParams(lp);
 
-    mImg1.post(new Runnable() {
-      @Override
-      public void run() {
-        LinearLayout.LayoutParams lp1 = (LinearLayout.LayoutParams) mImg1.getLayoutParams();
-        lp1.width = mImg1.getMeasuredHeight();
-        Log.i(TAG, "img1 width:" + mImg1.getWidth());
-        mImg1.setLayoutParams(lp1);
+    mImg1.post(() -> {
+      LinearLayout.LayoutParams lp1 = (LinearLayout.LayoutParams) mImg1.getLayoutParams();
+      lp1.width = mImg1.getMeasuredHeight();
+      Log.i(TAG, "img1 width:" + mImg1.getWidth());
+      mImg1.setLayoutParams(lp1);
 
-        LinearLayout.LayoutParams lp2 = (LinearLayout.LayoutParams) mImg2.getLayoutParams();
-        lp2.width = mImg2.getMeasuredHeight();
-        mImg2.setLayoutParams(lp2);
+      LinearLayout.LayoutParams lp2 = (LinearLayout.LayoutParams) mImg2.getLayoutParams();
+      lp2.width = mImg2.getMeasuredHeight();
+      mImg2.setLayoutParams(lp2);
 
-        LinearLayout.LayoutParams lp3 = (LinearLayout.LayoutParams) mImg3.getLayoutParams();
-        lp3.width = mImg3.getMeasuredHeight();
-        mImg3.setLayoutParams(lp3);
-      }
+      LinearLayout.LayoutParams lp3 = (LinearLayout.LayoutParams) mImg3.getLayoutParams();
+      lp3.width = mImg3.getMeasuredHeight();
+      mImg3.setLayoutParams(lp3);
     });
 
     mTakeBtn.setAdjustViewBounds(true);
@@ -164,22 +155,19 @@ public class RegisterActivity extends BaseAppcompatActivity implements CameraSur
     lp.height = mSurfaceViewHeight;
     mSurfaceView.setLayoutParams(lp);
 
-    mImg1.post(new Runnable() {
-      @Override
-      public void run() {
-        LinearLayout.LayoutParams lp1 = (LinearLayout.LayoutParams) mImg1.getLayoutParams();
-        lp1.height = mImg1.getMeasuredWidth();
-        Log.i(TAG, "img1 width:" + mImg1.getWidth());
-        mImg1.setLayoutParams(lp1);
+    mImg1.post(() -> {
+      LinearLayout.LayoutParams lp1 = (LinearLayout.LayoutParams) mImg1.getLayoutParams();
+      lp1.height = mImg1.getMeasuredWidth();
+      Log.i(TAG, "img1 width:" + mImg1.getWidth());
+      mImg1.setLayoutParams(lp1);
 
-        LinearLayout.LayoutParams lp2 = (LinearLayout.LayoutParams) mImg2.getLayoutParams();
-        lp2.height = mImg2.getMeasuredWidth();
-        mImg2.setLayoutParams(lp2);
+      LinearLayout.LayoutParams lp2 = (LinearLayout.LayoutParams) mImg2.getLayoutParams();
+      lp2.height = mImg2.getMeasuredWidth();
+      mImg2.setLayoutParams(lp2);
 
-        LinearLayout.LayoutParams lp3 = (LinearLayout.LayoutParams) mImg3.getLayoutParams();
-        lp3.height = mImg3.getMeasuredWidth();
-        mImg3.setLayoutParams(lp3);
-      }
+      LinearLayout.LayoutParams lp3 = (LinearLayout.LayoutParams) mImg3.getLayoutParams();
+      lp3.height = mImg3.getMeasuredWidth();
+      mImg3.setLayoutParams(lp3);
     });
 
     mTakeBtn.setAdjustViewBounds(true);
@@ -209,12 +197,7 @@ public class RegisterActivity extends BaseAppcompatActivity implements CameraSur
     mTakeBtn.setScaleX(0f);
     mTakeBtn.setScaleY(0f);
 
-    mTakeBtn.postDelayed(new Runnable() {
-      @Override
-      public void run() {
-        startTakeAnim();
-      }
-    }, 600);
+    mTakeBtn.postDelayed(this::startTakeAnim, 600);
   }
 
   private void startTakeAnim() {
@@ -264,7 +247,7 @@ public class RegisterActivity extends BaseAppcompatActivity implements CameraSur
     Call<FaceAttrs> call = CheckAPI.checkingImageByBase64(base64, null, null);
     call.enqueue(new Callback<FaceAttrs>() {
 
-      public void onFinish() {
+      void onFinish() {
         if (!mBase64List.isEmpty()) {
           mBase64List.remove(0);
         }
@@ -314,7 +297,7 @@ public class RegisterActivity extends BaseAppcompatActivity implements CameraSur
     Call<PeopleAdd> call = CheckAPI.peopleAddByName(mFaceAll, mName);
     call.enqueue(new Callback<PeopleAdd>() {
 
-      public void onFinish() {
+      void onFinish() {
         mProgressDialog.dismiss();
       }
 
@@ -383,11 +366,6 @@ public class RegisterActivity extends BaseAppcompatActivity implements CameraSur
   }
 
   private void exit() {
-    new Handler().postDelayed(new Runnable() {
-      @Override
-      public void run() {
-        finish();
-      }
-    }, 1000);
+    new Handler().postDelayed(this::finish, 1000);
   }
 }

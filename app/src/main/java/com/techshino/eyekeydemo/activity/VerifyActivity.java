@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.SoundPool;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -70,7 +71,6 @@ public class VerifyActivity extends BaseAppcompatActivity implements CameraSurfa
   @Bind(R.id.bgFrame)
   ImageView mBgFrame;
   ProgressDialog mProgressDialog;
-  private int mCameraId;
   private String mName;
   private boolean isRefresh = true;
   private SoundPool mSoundPool;
@@ -78,23 +78,18 @@ public class VerifyActivity extends BaseAppcompatActivity implements CameraSurfa
   @Override
   public void initData() {
     Intent intent = getIntent();
-    mCameraId = intent.getIntExtra(ARG_CAMERA_ID, 1);
+    int cameraId = intent.getIntExtra(ARG_CAMERA_ID, 1);
     mName = intent.getStringExtra(ARG_NAME);
 
     mProgressDialog = new ProgressDialog(this);
     mProgressDialog.setCancelable(false);
 
-    mSurfaceView.setCameraId(mCameraId);
+    mSurfaceView.setCameraId(cameraId);
     setSupportActionBar(mToolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setTitle("");
     mToolbar.setBackgroundColor(Color.TRANSPARENT);
-    mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        VerifyActivity.this.finish();
-      }
-    });
+    mToolbar.setNavigationOnClickListener(v -> VerifyActivity.this.finish());
 
     // 设置拍照回掉接口
     mSurfaceView.setFaceCallback(this);
@@ -108,22 +103,19 @@ public class VerifyActivity extends BaseAppcompatActivity implements CameraSurfa
     lp.height = mSurfaceViewHeight;
     mSurfaceView.setLayoutParams(lp);
 
-    mImg1.post(new Runnable() {
-      @Override
-      public void run() {
-        LinearLayout.LayoutParams lp1 = (LinearLayout.LayoutParams) mImg1.getLayoutParams();
-        lp1.height = mImg1.getMeasuredWidth();
-        Log.i(TAG, "img1 width:" + mImg1.getWidth());
-        mImg1.setLayoutParams(lp1);
+    mImg1.post(() -> {
+      LinearLayout.LayoutParams lp1 = (LinearLayout.LayoutParams) mImg1.getLayoutParams();
+      lp1.height = mImg1.getMeasuredWidth();
+      Log.i(TAG, "img1 width:" + mImg1.getWidth());
+      mImg1.setLayoutParams(lp1);
 
-        LinearLayout.LayoutParams lp2 = (LinearLayout.LayoutParams) mImg2.getLayoutParams();
-        lp2.height = mImg2.getMeasuredWidth();
-        mImg2.setLayoutParams(lp2);
+      LinearLayout.LayoutParams lp2 = (LinearLayout.LayoutParams) mImg2.getLayoutParams();
+      lp2.height = mImg2.getMeasuredWidth();
+      mImg2.setLayoutParams(lp2);
 
-        LinearLayout.LayoutParams lp3 = (LinearLayout.LayoutParams) mImg3.getLayoutParams();
-        lp3.height = mImg3.getMeasuredWidth();
-        mImg3.setLayoutParams(lp3);
-      }
+      LinearLayout.LayoutParams lp3 = (LinearLayout.LayoutParams) mImg3.getLayoutParams();
+      lp3.height = mImg3.getMeasuredWidth();
+      mImg3.setLayoutParams(lp3);
     });
 
     FrameLayout.LayoutParams bgLp = (FrameLayout.LayoutParams) mBgFrame.getLayoutParams();
@@ -154,12 +146,7 @@ public class VerifyActivity extends BaseAppcompatActivity implements CameraSurfa
     mTakeBtn.setScaleX(0f);
     mTakeBtn.setScaleY(0f);
 
-    mTakeBtn.postDelayed(new Runnable() {
-      @Override
-      public void run() {
-        startTakeAnim();
-      }
-    }, 600);
+    mTakeBtn.postDelayed(this::startTakeAnim, 600);
 
   }
 
@@ -289,7 +276,7 @@ public class VerifyActivity extends BaseAppcompatActivity implements CameraSurfa
     Call<MatchVerify> call = CheckAPI.matchVerify(faceId, mName);
     call.enqueue(new Callback<MatchVerify>() {
 
-      public void onFinish() {
+      void onFinish() {
         mProgressDialog.dismiss();
       }
 
@@ -315,10 +302,10 @@ public class VerifyActivity extends BaseAppcompatActivity implements CameraSurfa
       return;
     }
     mVerifyLayout.setVisibility(View.VISIBLE);
-    if (StringUtils.isEquals(data.getRes_code(), Constant.RES_CODE_0000) && data.isResult() == true) {
+    if (StringUtils.isEquals(data.getRes_code(), Constant.RES_CODE_0000) && data.isResult()) {
       ToastUtils.show(this, "认证成功");
       verifySuc(data.getSimilarity());
-    } else if (StringUtils.isEquals(data.getRes_code(), Constant.RES_CODE_0000) && data.isResult() == false) {
+    } else if (StringUtils.isEquals(data.getRes_code(), Constant.RES_CODE_0000) && !data.isResult()) {
       ToastUtils.show(this, "认证失败，不是同一个人");
       verifyFail(data.getSimilarity());
     } else if (StringUtils.isEquals(data.getRes_code(), Constant.RES_CODE_1025)) {
@@ -368,11 +355,6 @@ public class VerifyActivity extends BaseAppcompatActivity implements CameraSurfa
   }
 
   private void exit() {
-    new Handler().postDelayed(new Runnable() {
-      @Override
-      public void run() {
-        finish();
-      }
-    }, 1000);
+    new Handler().postDelayed(this::finish, 1000);
   }
 }
