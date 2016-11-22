@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class PeopleGet {
 
-  private List<String> crowd;
+  private List<Crowd> crowd;
 
   private int crowd_count;
 
@@ -31,11 +31,11 @@ public class PeopleGet {
 
   private String res_code;
 
-  public List<String> getCrowd() {
+  public List<Crowd> getCrowd() {
     return crowd;
   }
 
-  public void setCrowd(List<String> crowd) {
+  public void setCrowd(List<Crowd> crowd) {
     this.crowd = crowd;
   }
 
