@@ -1,7 +1,6 @@
 package com.techshino.eyekeydemo.activity;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.CoordinatorLayout;
@@ -103,19 +102,11 @@ public class IndexActivity extends BaseAppcompatActivity {
 
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setMessage(CustomUtil.getString(this, R.string.text_delete_confirm))
-        .setPositiveButton(R.string.text_confirm, new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            dialog.dismiss();
-            peopleDelete();
-          }
+        .setPositiveButton(R.string.text_confirm, (dialog, which) -> {
+          dialog.dismiss();
+          peopleDelete();
         })
-        .setNegativeButton(R.string.text_cancel, new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            dialog.dismiss();
-          }
-        }).show();
+        .setNegativeButton(R.string.text_cancel, (dialog, which) -> dialog.dismiss()).show();
   }
 
   /**
@@ -140,19 +131,11 @@ public class IndexActivity extends BaseAppcompatActivity {
       builder.setMessage(R.string.text_is_change_back_preview);
     }
     builder
-        .setPositiveButton(R.string.text_confirm, new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            changeCamera();
-            dialog.dismiss();
-          }
+        .setPositiveButton(R.string.text_confirm, (dialog, which) -> {
+          changeCamera();
+          dialog.dismiss();
         })
-        .setNegativeButton(R.string.text_cancel, new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            dialog.dismiss();
-          }
-        })
+        .setNegativeButton(R.string.text_cancel, (dialog, which) -> dialog.dismiss())
         .show();
   }
 
