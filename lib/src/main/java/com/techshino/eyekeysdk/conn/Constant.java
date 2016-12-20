@@ -7,7 +7,7 @@ public interface Constant {
   String API_SERVER = "http://api.eyekey.com/";
   String Check = API_SERVER + "/face/Check";
   String Match = API_SERVER + "/face/Match";
-  String FaceGather = API_SERVER + "/FaceGather";
+  String FaceGather = API_SERVER + "/face/FaceGather";
   String People = API_SERVER + "/People";
   String Crowd = API_SERVER + "/Crowd";
   String Info = API_SERVER + "/Info";
