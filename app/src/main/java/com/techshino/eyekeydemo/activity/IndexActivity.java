@@ -21,7 +21,7 @@ import com.techshino.eyekeysdk.conn.Constant;
 import com.techshino.eyekeysdk.entity.PeopleDelete;
 import com.techshino.eyekeysdk.entity.PeopleGet;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import retrofit2.Call;
@@ -41,13 +41,13 @@ public class IndexActivity extends BaseAppcompatActivity {
 
   private static final int ACTION_VERIFY = 1;
   private static final int ACTION_REGISTER = 2;
-  @Bind(R.id.toolbar)
+  @BindView(R.id.toolbar)
   Toolbar mToolbar;
-  @Bind(R.id.toolbarTitle)
+  @BindView(R.id.toolbarTitle)
   TextView mTitleText;
-  @Bind(R.id.container)
+  @BindView(R.id.container)
   CoordinatorLayout mContainer;
-  @Bind(R.id.nameEdit)
+  @BindView(R.id.nameEdit)
   EditText mNameEdit;
   ProgressDialog mProgressDialog;
   private int mAction;

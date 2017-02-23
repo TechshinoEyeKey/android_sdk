@@ -8,7 +8,6 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.SoundPool;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -35,7 +34,7 @@ import com.techshino.eyekeysdk.entity.MatchVerify;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,25 +49,25 @@ public class VerifyActivity extends BaseAppcompatActivity implements CameraSurfa
   public static final String ARG_CAMERA_ID = VerifyActivity.class.getSimpleName() + ".camera_id";
   public static final String ARG_NAME = VerifyActivity.class.getSimpleName() + ".name";
   private static final String TAG = VerifyActivity.class.getSimpleName();
-  @Bind(R.id.cameraSurface)
+  @BindView(R.id.cameraSurface)
   CameraSurfaceView mSurfaceView;
-  @Bind(R.id.img1)
+  @BindView(R.id.img1)
   ImageView mImg1;
-  @Bind(R.id.img2)
+  @BindView(R.id.img2)
   ImageView mImg2;
-  @Bind(R.id.img3)
+  @BindView(R.id.img3)
   ImageView mImg3;
-  @Bind(R.id.toolbar)
+  @BindView(R.id.toolbar)
   Toolbar mToolbar;
-  @Bind(R.id.takeBtn)
+  @BindView(R.id.takeBtn)
   ImageView mTakeBtn;
-  @Bind(R.id.verifyLayout)
+  @BindView(R.id.verifyLayout)
   LinearLayout mVerifyLayout;
-  @Bind(R.id.verifyImg)
+  @BindView(R.id.verifyImg)
   ImageView mVerifyImg;
-  @Bind(R.id.verifyText)
+  @BindView(R.id.verifyText)
   TextView mVerifyText;
-  @Bind(R.id.bgFrame)
+  @BindView(R.id.bgFrame)
   ImageView mBgFrame;
   ProgressDialog mProgressDialog;
   private String mName;

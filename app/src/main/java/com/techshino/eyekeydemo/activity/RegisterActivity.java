@@ -35,7 +35,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -52,19 +52,19 @@ public class RegisterActivity extends BaseAppcompatActivity implements CameraSur
   public static final String ARG_NAME = RegisterActivity.class.getSimpleName() + ".name";
   public static final String ARG_IS_CREATED = RegisterActivity.class.getSimpleName() + ".created";
   private static final String TAG = RegisterActivity.class.getSimpleName();
-  @Bind(R.id.cameraSurface)
+  @BindView(R.id.cameraSurface)
   CameraSurfaceView mSurfaceView;
-  @Bind(R.id.img1)
+  @BindView(R.id.img1)
   ImageView mImg1;
-  @Bind(R.id.img2)
+  @BindView(R.id.img2)
   ImageView mImg2;
-  @Bind(R.id.img3)
+  @BindView(R.id.img3)
   ImageView mImg3;
-  @Bind(R.id.toolbar)
+  @BindView(R.id.toolbar)
   Toolbar mToolbar;
-  @Bind(R.id.takeBtn)
+  @BindView(R.id.takeBtn)
   ImageView mTakeBtn;
-  @Bind(R.id.bgFrame)
+  @BindView(R.id.bgFrame)
   ImageView mBgFrame;
   ProgressDialog mProgressDialog;
   private String mName;

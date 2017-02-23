@@ -61,7 +61,6 @@ public abstract class BaseAppcompatActivity extends AppCompatActivity {
   @Override
   protected void onDestroy() {
     super.onDestroy();
-    ButterKnife.unbind(this);
     CheckAPI.cancelAllCall();
   }
 
