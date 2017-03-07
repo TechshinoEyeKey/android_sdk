@@ -13,8 +13,6 @@ import com.techshino.eyekeydemo.view.CameraSurfaceView;
 /**
  * Fragment接收message并处理的handler
  *
- * @author James
- *         Created by James on 10/15/13
  */
 public class BaseCameraHandler extends Handler implements IConstants {
 
