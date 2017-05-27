@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EyekeySDK.iml" filepath="$PROJECT_DIR$/EyekeySDK.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app_dev/app_dev.iml" filepath="$PROJECT_DIR$/app_dev/app_dev.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/librx/librx.iml" filepath="$PROJECT_DIR$/librx/librx.iml" />
       <module fileurl="file://$PROJECT_DIR$/lvm/lvm.iml" filepath="$PROJECT_DIR$/lvm/lvm.iml" />

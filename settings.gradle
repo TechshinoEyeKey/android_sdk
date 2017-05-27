@@ -1,6 +1,6 @@
 include ':app'
 include ':lvm'
-include ':app_dev'
+//include ':app_dev'
 include ':sample_check', ':sample_compare'
 include ':lib'
 include ':librx'
