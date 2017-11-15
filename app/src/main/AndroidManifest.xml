@@ -54,10 +54,10 @@
         <!--添加自己的appkey和appid-->
         <meta-data
             android:name="eyekey_appid"
-            android:value="your appid"/>
+            android:value="6393beabbd924723b25b4d03814b7779"/>
         <meta-data
             android:name="eyekey_appkey"
-            android:value="your appkey"/>
+            android:value="218d88355a38473d947a4fd1e0e378f8"/>
     </application>
 
 

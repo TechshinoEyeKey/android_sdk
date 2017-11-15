@@ -6,13 +6,14 @@ package com.techshino.eyekeysdk.entity;
 
 public class Crowd {
 
-  private String crowdName;
+  private String crowd_name;
 
-  public void setCrowdName(String crowdName) {
-    this.crowdName = crowdName;
+
+  public String getCrowd_name() {
+    return crowd_name;
   }
 
-  public String getCrowdName() {
-    return crowdName;
+  public void setCrowd_name(String crowd_name) {
+    this.crowd_name = crowd_name;
   }
 }
